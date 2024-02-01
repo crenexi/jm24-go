@@ -1,0 +1,78 @@
+$danger: #ea5c4f;
+$warn: #f4be46;
+$success: #4ea658;
+$info: #6695FF;
+
+// Combined color map
+$colors: (
+  "info": (
+    "lighter": lighten($info, 7%),
+    "base": $info,
+    "darker": darken($info, 7%),
+  ),
+  "success": (
+    "lighter": lighten($success, 7%),
+    "base": $success,
+    "darker": darken($success, 7%),
+  ),
+  "warn": (
+    "lighter": lighten($warn, 7%),
+    "base": $warn,
+    "darker": darken($warn, 7%),
+  ),
+  "danger": (
+    "lighter": lighten($danger, 7%),
+    "base": $danger,
+    "darker": darken($danger, 7%),
+  ),
+  "content": (
+    "base": rgba(0, 0, 0, .9),
+    "subtle": rgba(0, 0, 0, .65),
+  ),
+  "background": (
+    "lightest": #f6f7fa,
+    "lighter": #e9ecf3,
+    "base": #dce1ec,
+    "darker": #d0d6e5,
+    "darkest": #c3cbde,
+  ),
+  "primary": (
+    "lightest": #8798BE,
+    "lighter": #5E76A9,
+    "base": #375494,
+    "darker": #2C4376,
+    "darkest": #213258,
+  ),
+  "bright": (
+    "lightest": #9FBDFF,
+    "lighter": #7EA7FF,
+    "base": #5F91FF,
+    "darker": #4C74CC,
+    "darkest": #395799,
+  ),
+  "accent": (
+    "lightest": #EFD499,
+    "lighter": #EAC676,
+    "base": #E5B855,
+    "darker": #B79344,
+    "darkest": #896E33,
+  ),
+  "neutral": (
+    "n10": #F0F1F3,
+    "n20": #DCDEE4,
+    "n30": #CBCED7,
+    "n40": #B9BEC9,
+    "n50": #A8AEBC,
+    "n70": #979EAF,
+    "n80": #858EA1,
+    "n90": #747E94,
+    "n100": #636E87,
+    "n200": #49546D,
+    "n300": #414B61,
+    "n500": #394155,
+    "n600": #313849,
+    "n700": #292F3D,
+    "n800": #202530,
+    "n900": #181C24,
+  ),
+);

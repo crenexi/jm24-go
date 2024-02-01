@@ -1,0 +1,31 @@
+@use '@sutils' as *;
+
+.wish {
+  width: 100%;
+  padding: sp(sm4);
+  background-color: #fff;
+  border-radius: radius(r2);
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+
+  &:not(:first-child) {
+    margin-top: sp(sm4);
+  }
+}
+
+.wish_main {
+  flex: auto;
+}
+
+.wish_message {
+  @include text-preset(body-sm);
+}
+
+.wish_sender {
+  margin-top: sp(sm2);
+  @include text-preset(label-md);
+}
+
+.wish_actions {
+  margin-left: sp(sm3);
+}

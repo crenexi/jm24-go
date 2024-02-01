@@ -1,0 +1,85 @@
+@use '@sutils' as *;
+
+// Universal properties
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: unset;
+}
+
+.google-map * {
+  border-style: none;
+}
+
+*:focus {
+  outline: 0;
+}
+
+// Top-level elements
+
+html,
+html body {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: co(background, lightest);
+  -webkit-overflow-scrolling: touch;
+}
+
+// Images are block-level
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+}
+
+// Constrain images to parent
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+// Pseudo selection
+
+::selection {
+  background-color: co(primary, darker);
+  color: #fff;
+}
+
+// Pseudo scrollbar
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e6eaf3;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9dadcf;
+  border: 2px solid #e6eaf3;
+  border-radius: 10px;
+}
+
+// MUI fixes
+
+:global {
+  .MuiButton-startIcon,
+  .MuiButton-endIcon {
+    margin-top: -1px;
+  }
+}
+
+// FA fixes
+
+:global {
+  .fa-memo-circle-check {
+    margin-right: -.7rem;
+  }
+}

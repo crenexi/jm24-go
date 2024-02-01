@@ -1,0 +1,34 @@
+@use '@sutils' as *;
+
+.edge {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.header {
+  height: $header-height_m1;
+  padding: sp(sm5);
+  color: co(neutral, n50);
+}
+
+// Wide header only
+@include breakpoint('d1+') {
+  .gap, .header {
+    height: $header-height_d1;
+  }
+
+  .header {
+    position: fixed;
+    z-index: z-index(header);
+    @include flexy(row, start, center);
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  .main {
+    width: 100%;
+    max-width: $header-max-width;
+    margin: 0 auto;
+  }
+}

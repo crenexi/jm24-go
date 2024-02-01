@@ -1,0 +1,15 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+.wishes {
+  width: 40rem;
+  @include flexy(column);
+}
+
+
+.actions {
+  margin-top: sp(sm5);
+}
