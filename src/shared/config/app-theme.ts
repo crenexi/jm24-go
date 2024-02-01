@@ -76,11 +76,11 @@ export const paletteRows: PaletteRows = [
   {
     title: 'accent',
     colors: [
-      ['Darkest', svar('co_accent_darkest')],
-      ['Darker', svar('co_accent_darker')],
-      ['Base', svar('co_accent')],
-      ['Lighter', svar('co_accent_lighter')],
-      ['Lightest', svar('co_accent_lightest')],
+      ['Darkest', svar('co_gold_darkest')],
+      ['Darker', svar('co_gold_darker')],
+      ['Base', svar('co_gold')],
+      ['Lighter', svar('co_gold_lighter')],
+      ['Lightest', svar('co_gold_lightest')],
     ],
   },
   {

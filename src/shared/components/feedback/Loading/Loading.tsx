@@ -13,7 +13,7 @@ type LoadingProps = {
 };
 
 const Loading: FC<LoadingProps> = ({
-  iconName = 'spinner-third',
+  iconName = 'yin-yang',
   size = 'md',
   color,
   center,
@@ -31,7 +31,7 @@ const Loading: FC<LoadingProps> = ({
   // Icon style
   const sxIcon: CSSProperties = {
     color,
-    animationDuration: '350ms',
+    animationDuration: '500ms',
   };
 
   return (

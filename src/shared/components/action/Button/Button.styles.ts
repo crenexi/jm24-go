@@ -4,8 +4,8 @@ import { svar } from '@helpers/helpers';
 type SxVariant = SxProps<Theme>;
 
 const coPrimaryBase = svar('co_primary_base');
+const coPrimaryLightest = svar('co_primary_lightest');
 const coPrimaryDarker = svar('co_primary_darker');
-const coBrightDarker = svar('co_bright_darker');
 const coDangerBase = svar('co_danger_base');
 const coDangerDarker = svar('co_danger_darker');
 const coSuccessBase = svar('co_success_base');
@@ -24,9 +24,9 @@ const gradSuccess = `linear-gradient(135deg, ${coSuccessDarker}, ${coSuccessBase
 
 const defaults: SxVariant = {
   color: coPrimaryBase,
-  background: '#DFE2ED',
-  borderColor: `rgba(55, 84, 148, 0.25)`,
-  hoverColor: 'rgba(107, 119, 146, 0.25)',
+  background: '#e4e1e5',
+  borderColor: `rgba(151, 133, 165, 0.25)`,
+  hoverColor: 'rgba(72, 60, 81, 0.25)',
   active: {
     transform: 'translateY(1px)',
   },
@@ -70,8 +70,8 @@ const variantPrimary: SxVariant = {
   border: `2px solid ${coPrimaryBase}`,
   '&:hover': {
     color: '#fff',
-    backgroundColor: coBrightDarker,
-    borderColor: coBrightDarker,
+    backgroundColor: coPrimaryLightest,
+    borderColor: coPrimaryLightest,
     boxShadow: shadow3,
   },
   '&:focus': {
