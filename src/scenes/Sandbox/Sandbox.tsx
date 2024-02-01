@@ -1,13 +1,8 @@
 import { FC } from 'react';
-import WishesList from './WishesList';
 import sy from './Sandbox.scss';
 
 const Sandbox: FC = () => {
-  return (
-    <div className={sy.edge}>
-      <WishesList />
-    </div>
-  );
+  return <div className={sy.edge}>Sandbox</div>;
 };
 
 export default Sandbox;
