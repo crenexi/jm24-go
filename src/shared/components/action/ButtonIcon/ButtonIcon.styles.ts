@@ -4,9 +4,10 @@ import { svar } from '@helpers/helpers';
 type SxVariant = SxProps<Theme>;
 
 const coPrimaryBase = svar('co_primary_base');
-const coPrimaryLightest = svar('co_primary_lightest');
+const coPrimaryDarkest = svar('co_primary_darkest');
 const coPrimaryDarker = svar('co_primary_darker');
-const coBrightDarker = svar('co_bright_darker');
+const coPrimaryLighter = svar('co_primary_lighter');
+const coBrightDarkest = svar('co_bright_darkest');
 const coDangerBase = svar('co_danger_base');
 const coDangerDarker = svar('co_danger_darker');
 const coSuccessBase = svar('co_success_base');
@@ -67,8 +68,8 @@ const variantPrimary: SxVariant = {
   border: `2px solid ${coPrimaryBase}`,
   '&:hover': {
     color: '#fff',
-    backgroundColor: coPrimaryLightest,
-    borderColor: coPrimaryLightest,
+    backgroundColor: coBrightDarkest,
+    borderColor: coBrightDarkest,
     boxShadow: shadow3,
   },
   '&:focus': {
@@ -113,7 +114,7 @@ const variantText: SxVariant = {
   border: 'none',
   textDecoration: 'underline',
   '&:hover': {
-    color: coPrimaryBase,
+    color: coPrimaryDarker,
     backgroundColor: 'transparent',
     border: 'none',
     boxShadow: 'none',
@@ -121,10 +122,10 @@ const variantText: SxVariant = {
   },
   '&:active': {
     ...defaults.active,
-    color: coPrimaryBase,
+    color: coPrimaryDarker,
   },
   '&:focus': {
-    color: coPrimaryBase,
+    color: coPrimaryDarker,
     boxShadow: `inset 0 0 0 1px ${defaults.color}`,
     textDecoration: 'none',
   },

@@ -15,6 +15,7 @@
   grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   grid-row-gap: sp(sm7);
   padding: sp(sm4) sp(sm2);
+  color: co(primary, darker);
 }
 
 .icon {
