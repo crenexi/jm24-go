@@ -1,19 +1,21 @@
-import CXLogo from './CXLogo';
 import CXFav from './CXFav';
-import WedLogo from './WedLogo';
+import CXLogo from './CXLogo';
 import Error404 from './Error404';
 import ErrorBoundary from './ErrorBoundary';
 import ErrorFallback from './ErrorFallback';
 import Icon from './Icon';
 import Text from './Text';
+import WedFav from './WedFav';
+import WedLogo from './WedLogo';
 
 export {
-  CXLogo,
   CXFav,
-  WedLogo,
+  CXLogo,
   Error404,
   ErrorBoundary,
   ErrorFallback,
   Icon,
   Text,
+  WedFav,
+  WedLogo,
 };

@@ -1,21 +1,19 @@
 import { FC } from 'react';
 // import { assetsUrl } from '@constants/constants';
 import classNames from 'classnames';
-import sy from './WedLogo.scss';
+import sy from './WedFav.scss';
 
-type WedLogoProps = {
-  variant?: 'main' | 'light' | 'dark';
+type WedFavProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
 const tempAssetsUrl = 'https://stage.crenexi.com/assets/wedding';
 
-const WedLogo: FC<WedLogoProps> = ({ variant, size }) => {
-  const src = `${tempAssetsUrl}/logo-${variant}.svg`;
+const WedFav: FC<WedFavProps> = ({ size }) => {
+  const src = `${tempAssetsUrl}/fav.svg`;
 
-  // Ensure no spaces exist
   if (src.includes(' ')) {
-    throw new Error('WedLogo src url contains a space!');
+    throw new Error('WedFav src url contains a space!');
   }
 
   const cnEdge = classNames(sy.edge, {
@@ -28,14 +26,13 @@ const WedLogo: FC<WedLogoProps> = ({ variant, size }) => {
 
   return (
     <div className={cnEdge}>
-      <img className={sy.logo} src={src} alt="Wedding Logo" />{' '}
+      <img className={sy.fav} src={src} alt="Crenexi Fav" />{' '}
     </div>
   );
 };
 
-WedLogo.defaultProps = {
-  variant: 'main',
+WedFav.defaultProps = {
   size: 'md',
 };
 
-export default WedLogo;
+export default WedFav;
