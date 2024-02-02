@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 // Dependencies
 import { ThemeProvider } from '@mui/material';
 import { SettingsProvider } from '@contexts/SettingsContext';
+import { DataStaticProvider } from '@contexts/DataStaticContext';
 import { fontAwesome, materialUI } from '@core/libraries';
 
 // Base styles (import before App)
@@ -10,6 +11,7 @@ import '@core/styles/_index.scss';
 
 // Implementations
 import appSettings from '@config/app-settings';
+import dataStatic from '@config/data-static';
 import { logLiftoff } from './lifttoff';
 import App from './App';
 
@@ -33,9 +35,11 @@ const AppPod = () => {
 
   return (
     <SettingsProvider value={appSettings}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <DataStaticProvider value={dataStatic}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </DataStaticProvider>
     </SettingsProvider>
   );
 };

@@ -1,7 +1,8 @@
 import { createContext } from 'react';
+import DataStatic from '@stypes/data-static.types';
 
-const DataStaticContext = createContext(null);
+const DataStaticContext = createContext<DataStatic>({});
 
-export const SettingsProvider = DataStaticContext.Provider;
-export const SettingsConsumer = DataStaticContext.Consumer;
+export const DataStaticProvider = DataStaticContext.Provider;
+export const DataStaticConsumer = DataStaticContext.Consumer;
 export default DataStaticContext;

@@ -1,7 +1,10 @@
 import sy from './Home.scss';
+import useDataStatic from '@hooks/use-data-static';
 
 const Home = () => {
-  return <div className={sy.edge}>Home</div>;
+  const { test } = useDataStatic();
+
+  return <div className={sy.edge}>{test}</div>;
 };
 
 export default Home;
