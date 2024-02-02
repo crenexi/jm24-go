@@ -6,6 +6,7 @@ import ErrorFallback from './ErrorFallback';
 import Icon from './Icon';
 import Text from './Text';
 import WedFav from './WedFav';
+import WedGif from './WedGif';
 import WedLogo from './WedLogo';
 
 export {
@@ -17,5 +18,6 @@ export {
   Icon,
   Text,
   WedFav,
+  WedGif,
   WedLogo,
 };

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CXLogo, WedLogo, WedFav } from '@components/legos';
+import { CXLogo, WedLogo, WedFav, WedGif } from '@components/legos';
 import { Block, BlockSet } from '../../index';
 import sy from './KitLogosFavs.scss';
 
@@ -7,6 +7,12 @@ const KitLogosFavs: FC = () => (
   <div className={sy.edge}>
     <div className={sy.logos}>
       <BlockSet heading="Wedding Brand">
+        <Block label="Fav">
+          <div className={sy.logo}>
+            <WedFav />
+          </div>
+          <code>{`<WedFav size="lg" />`}</code>
+        </Block>
         <Block label="Logo Main" isDark>
           <div className={sy.logo}>
             <WedLogo size="lg" />
@@ -25,11 +31,12 @@ const KitLogosFavs: FC = () => (
           </div>
           <code>{`<WedFav variant="dark" size="lg" />`}</code>
         </Block>
-        <Block label="Fav">
+      </BlockSet>
+      <BlockSet heading="Logo GIF">
+        <Block label="Long Duration">
           <div className={sy.logo}>
-            <WedFav />
+            <WedGif isLong />
           </div>
-          <code>{`<WedFav size="lg" />`}</code>
         </Block>
       </BlockSet>
       <BlockSet heading="Crenexi Brand">

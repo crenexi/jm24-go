@@ -28,7 +28,7 @@ const WedLogo: FC<WedLogoProps> = ({ variant, size }) => {
 
   return (
     <div className={cnEdge}>
-      <img className={sy.logo} src={src} alt="Wedding Logo" />{' '}
+      <img className={sy.logo} src={src} alt="Wedding Logo" />
     </div>
   );
 };
