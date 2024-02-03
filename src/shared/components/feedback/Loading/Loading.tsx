@@ -31,7 +31,7 @@ const Loading: FC<LoadingProps> = ({
   // Icon style
   const sxIcon: CSSProperties = {
     color,
-    animationDuration: '500ms',
+    animationDuration: '350ms',
   };
 
   return (

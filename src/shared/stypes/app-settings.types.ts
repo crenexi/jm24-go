@@ -4,6 +4,7 @@ type AppSettings = {
   theme: 'light' | 'dark';
   language: string;
   logLevel: LogLevel;
+  splashDuration: number;
   debug: boolean;
 };
 

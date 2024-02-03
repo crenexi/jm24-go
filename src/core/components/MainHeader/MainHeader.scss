@@ -1,17 +1,24 @@
 @use '@sutils' as *;
 
-.edge {
-  visibility: visible;
+.gap, .header, .header_main {
+  height: $header-height_m1;
 }
 
 .header {
-  height: $header-height_m1;
-  @include flexy(row, start, center);
-  padding: 0 sp(sm5);
+  @include position(fixed, 0 0 null 0);
+  z-index: z-index(header);
   background-color: co(background, base);
   border-bottom: 1px solid co(background, lighter);
   box-shadow: shadow(s1);
   color: co(neutral, n50);
+}
+
+.header_main {
+  width: 100%;
+  max-width: $header-max-width;
+  margin: 0 auto;
+  padding: 0 sp(sm5);
+  @include flexy(row, start, center);
 }
 
 .header_start {
@@ -34,20 +41,7 @@
 
 // Wide header only
 @include breakpoint('d1+') {
-  .gap, .header {
+  .gap, .header, .header_main {
     height: $header-height_d1;
-  }
-
-  .header {
-    position: fixed;
-    z-index: z-index(header);
-    @include flexy(row, start, center);
-    width: 100%;
-  }
-
-  .main {
-    width: 100%;
-    max-width: $header-max-width;
-    margin: 0 auto;
   }
 }

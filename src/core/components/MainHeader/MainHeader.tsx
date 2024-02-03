@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import useBreakpoint from '@hooks/use-breakpoint';
 import { assetsUrl } from '@constants/constants';
 import { ButtonIcon } from '@components/action';
@@ -12,30 +12,34 @@ const MainHeader: FC = () => {
   // const [drawerOpen, setDrawerOpen] = useState(false);
   // const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
+  const jsxHeaderMain = (
+    <header className={sy.header_main}>
+      <div className={sy.header_start}>
+        <div className={sy.alpacas}>
+          <img src={urlAlpacas} alt="Alpacas" />
+        </div>
+      </div>
+      <div className={sy.header_center}>
+        <h6>Welcome</h6>
+      </div>
+      <div className={sy.header_end}>
+        <ButtonIcon variant="secondary" name="list-check" />
+      </div>
+    </header>
+  );
+
   const narrowHeader = () => (
-    <div className={sy.edge}>
-      <header className={sy.header}>
-        <div className={sy.header_start}>
-          <div className={sy.alpacas}>
-            <img src={urlAlpacas} alt="Alpacas" />
-          </div>
-        </div>
-        <div className={sy.header_center}>
-          <h6>Welcome</h6>
-        </div>
-        <div className={sy.header_end}>
-          <ButtonIcon variant="secondary" name="list-check" />
-        </div>
-      </header>
-    </div>
+    <Fragment>
+      <div className={sy.gap} />
+      <div className={sy.header}>{jsxHeaderMain}</div>
+    </Fragment>
   );
 
   const wideHeader = () => (
-    <div className={sy.gap}>
-      <header className={sy.header}>
-        <div className={sy.main}>Header</div>
-      </header>
-    </div>
+    <Fragment>
+      <div className={sy.gap} />
+      <div className={sy.header}>{jsxHeaderMain}</div>
+    </Fragment>
   );
 
   return isGtSm ? wideHeader() : narrowHeader();

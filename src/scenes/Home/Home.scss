@@ -1,18 +1,32 @@
 @use '@sutils' as *;
 
 .edge {
-  @include gradient-d(co(background, darker), co(background, base));
+  background-color: co(background, darker);
 }
 
-.hello {
+.main {
+  @include gradient-d(co(background, lighter), co(background, darker));
   padding: sp(md1) sp(sm7);
 }
 
-.hello_center {
+.main_actions {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: red;
+}
+
+.end {
+  padding: sp(md1) sp(sm7);
+  @include gradient-d(co(background, darker), co(background, base));
+}
+
+.end_center {
   max-width: 66vw;
   margin: 0 auto;
 }
 
-.hello_logo {
+.end_logo {
+  @include flexy(column, center, center);
   @include fade('in', 2, 2, both);
 }

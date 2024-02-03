@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // Dependencies
 import { ThemeProvider } from '@mui/material';
@@ -26,18 +26,26 @@ const AppPod = () => {
   // Initialize libraries
   fontAwesome.buildLibrary();
 
+  // Splash state
+  const [isSplash, setIsSplash] = useState<boolean>(true);
+
   // Application is ready
   useEffect(() => {
-    if (!isProd) {
-      logLiftoff({ theme });
-    }
+    const onReady = () => {
+      if (!isProd) logLiftoff({ theme });
+      setIsSplash(false);
+    };
+
+    // Show splash first
+    const timeout = setTimeout(onReady, appSettings.splashDuration);
+    return () => clearTimeout(timeout);
   }, [theme]);
 
   return (
     <SettingsProvider value={appSettings}>
       <DataStaticProvider value={dataStatic}>
         <ThemeProvider theme={theme}>
-          <App />
+          <App isSplash={isSplash} />
         </ThemeProvider>
       </DataStaticProvider>
     </SettingsProvider>

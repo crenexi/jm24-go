@@ -1,3 +1,33 @@
+@use '@sutils' as *;
+
+// Initial splash
+
+.splash {
+  @include position(fixed, 0 0 0 0);
+  @include size(100vw, 100vh);
+  background-color: co(neutral, n30);
+  padding: sp(md1) sp(sm6) sp(md7);
+}
+
+.splash_main {
+  height: 100%;
+  @include flexy(column, center, center);
+}
+
+.splash_logo {
+  margin-top: sp(sm6);
+}
+
+.splash img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+// After splash
+
 .app {
   min-height: -webkit-fill-available;
   min-height: 100vh;
