@@ -1,5 +1,5 @@
-$def-underline-color: co(bright, base);
-$def-underline-hover-color: co(bright, darker);
+$def-underline-color: co(bright, lighter);
+$def-underline-hover-color: co(bright, lightest);
 
 @mixin underline(
   $color: $def-underline-color,

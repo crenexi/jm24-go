@@ -8,7 +8,7 @@
 .nav {
   @include flexy(column);
   padding: sp(sm4);
-  background: #fff;
+  background: co(background, base);
   border-right: 1px solid rgba(0, 0, 0, .1);
 }
 

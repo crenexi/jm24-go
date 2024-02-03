@@ -6,8 +6,9 @@ $border: 1px solid rgba(0, 0, 0, .1);
   height: 5rem;
   @include flexy(row, start, center);
   padding: 0 sp(sm5);
-  background: #fff;
+  background: co(background, base);
   border-bottom: $border;
+  color: #fff;
 }
 
 .heading {

@@ -1,14 +1,35 @@
 @use '@sutils' as *;
 
 .edge {
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  visibility: visible;
 }
 
 .header {
   height: $header-height_m1;
-  padding: sp(sm5);
+  @include flexy(row, start, center);
+  padding: 0 sp(sm5);
+  background-color: co(background, base);
+  border-bottom: 1px solid co(background, lighter);
+  box-shadow: shadow(s1);
   color: co(neutral, n50);
+}
+
+.header_start {
+  @include flexy(column, center, center);
+}
+
+.header_center {
+  flex: auto;
+  @include flexy(column, center, center);
+  color: co(neutral, n100);
+}
+
+.header_end {
+  padding: sp(sm1);
+}
+
+.alpacas {
+  width: 3rem;
 }
 
 // Wide header only
@@ -22,8 +43,6 @@
     z-index: z-index(header);
     @include flexy(row, start, center);
     width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
 
   .main {

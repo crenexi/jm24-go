@@ -1,7 +1,7 @@
 @use '@sutils' as *;
 
 .edge {
-  visibility: visible;
+  max-width: 100%;
 
   &__xs { width: 2rem; }
   &__sm { width: 3rem; }

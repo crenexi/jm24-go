@@ -1,5 +1,18 @@
 @use '@sutils' as *;
 
 .edge {
-  pointer-events: auto;
+  @include gradient-d(co(background, darker), co(background, base));
+}
+
+.hello {
+  padding: sp(md1) sp(sm7);
+}
+
+.hello_center {
+  max-width: 66vw;
+  margin: 0 auto;
+}
+
+.hello_logo {
+  @include fade('in', 2, 2, both);
 }

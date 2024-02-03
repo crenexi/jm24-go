@@ -14,7 +14,7 @@
 
 .label {
   @include text-preset(label-md);
-  color: co(neutral, n300);
+  color: co(neutral, n100);
 }
 
 .main {
@@ -38,13 +38,13 @@
 
 // Dark blocks
 
-.edge__dark {
-  background-color: co(neutral, n800);
+.edge {
+  background-color: co(neutral, n700);
   border-color: transparent;
   color: co(neutral, n40);
 
   .main code {
-    background-color: co(neutral, n600);
+    background-color: co(neutral, n500);
     color: co(neutral, n30);
   }
 }

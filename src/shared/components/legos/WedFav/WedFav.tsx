@@ -1,5 +1,5 @@
 import { FC } from 'react';
-// import { assetsUrl } from '@constants/constants';
+import { assetsUrl } from '@constants/constants';
 import classNames from 'classnames';
 import sy from './WedFav.scss';
 
@@ -7,10 +7,8 @@ type WedFavProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
-const tempAssetsUrl = 'https://stage.crenexi.com/assets/wedding';
-
 const WedFav: FC<WedFavProps> = ({ size }) => {
-  const src = `${tempAssetsUrl}/fav.svg`;
+  const src = `${assetsUrl}/fav.svg`;
 
   if (src.includes(' ')) {
     throw new Error('WedFav src url contains a space!');

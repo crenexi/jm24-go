@@ -1,5 +1,5 @@
 import { FC } from 'react';
-// import { assetsUrl } from '@constants/constants';
+import { assetsUrl } from '@constants/constants';
 import classNames from 'classnames';
 import sy from './WedLogo.scss';
 
@@ -8,10 +8,8 @@ type WedLogoProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 };
 
-const tempAssetsUrl = 'https://stage.crenexi.com/assets/wedding';
-
 const WedLogo: FC<WedLogoProps> = ({ variant, size }) => {
-  const src = `${tempAssetsUrl}/logo-${variant}.svg`;
+  const src = `${assetsUrl}/logo-${variant}.svg`;
 
   // Ensure no spaces exist
   if (src.includes(' ')) {
