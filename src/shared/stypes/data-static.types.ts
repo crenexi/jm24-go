@@ -9,6 +9,10 @@ export type WedAction = {
 
 type DataStatic = {
   wedActions?: WedAction[];
+  welcome?: {
+    text1: string;
+    text2: string;
+  };
 };
 
 export default DataStatic;

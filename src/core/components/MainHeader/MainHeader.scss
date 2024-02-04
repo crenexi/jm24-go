@@ -7,9 +7,8 @@
 .header {
   @include position(fixed, 0 0 null 0);
   z-index: z-index(header);
-  background-color: co(background, base);
-  border-bottom: 1px solid co(background, lighter);
-  box-shadow: shadow(s1);
+  @include gradient-x(co(background, darker), co(background, lighter));
+  border-bottom: 1px solid co(neutral, n500);
   color: co(neutral, n50);
 }
 

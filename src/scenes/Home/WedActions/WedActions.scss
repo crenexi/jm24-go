@@ -1,5 +1,124 @@
 @use '@sutils' as *;
 
 .edge {
+  width: 100%;
+  max-width: 27rem;
+  margin: 0 auto;
+}
+
+.actions_header {
+  margin-bottom: sp(sm7);
+  padding-bottom: sp(sm7);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.actions_footer {
+  margin-top: sp(sm7);
+  padding-top: sp(sm7);
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  text-align: center;
+  color: #fff;
+}
+
+.enjoy_text1 {
+  @include text-type(primary, 400);
+  color: co(neutral, n100);
+  font-size: 1.5rem;
+  line-height: 1.2em;
+}
+
+.enjoy_text2 {
+  @include text-type(base, 300, uppercase);
+  font-size: 2rem;
+  line-height: 1.2em;
+}
+
+// Welcome text
+
+.welcome {
+  color: #fff;
+  padding: 0 sp(sm3);
+}
+
+.welcome_text1 {
+  text-align: center;
+  @include text-preset('headline-md');
+}
+
+.welcome_text2 {
+  margin-top: sp(sm4);
+  @include text-preset('body-md');
+
+  &::first-letter {
+    initial-letter: 2;
+    opacity: .5;
+    margin-right: 5px;
+  }
+}
+
+// Action item
+
+.actions_list {
   visibility: visible;
+}
+
+.action {
+  padding: sp(sm5);
+  background-color: co(background, lighter);
+  border-radius: radius(r4);
+
+  &:not(:first-child) {
+    margin-top: sp(sm5);
+  }
+}
+
+// Action header
+
+.action_header {
+  @include flexy(column, start, center);
+  flex-wrap: nowrap;
+  color: #fff;
+}
+
+.action_icon {
+  margin-top: -3px;
+  font-size: 2.2rem;
+}
+
+.action_headings {
+  margin-top: sp(sm2);
+  text-align: center;
+}
+
+.action_heading {
+  visibility: visible;
+  @include text-type('primary', 400);
+  line-height: 1.1em;
+  font-size: 1.7rem;
+}
+
+.action_subtext {
+  @include text-preset('label-md');
+  margin-bottom: -5px;
+  opacity: .5;
+}
+
+// Action button
+
+.action_button {
+  margin-top: sp(sm4);
+  padding: 0 sp(sm3);
+  @include flexy(column, center, center);
+}
+
+// Desktop
+
+@include breakpoint('d1+') {
+  .action {
+    padding: sp(sm6) sp(md1);
+
+    &:not(:first-child) {
+      margin-top: sp(sm5);
+    }
+  }
 }

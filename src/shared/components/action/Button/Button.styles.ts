@@ -31,7 +31,7 @@ const defaults: SxVariant = {
   },
   focus: {
     borderColor: '#3d3841',
-    boxShadow: `inset 0 0 0 2px #1f1c21`,
+    boxShadow: `inset 0 0 0 2px #29252c`,
   },
   disabled: {
     color: '#ffffff40',

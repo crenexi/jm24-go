@@ -1,5 +1,6 @@
 import sy from './Home.scss';
 import { WedLogo } from '@components/legos';
+import Alpacas from './Alpacas';
 import WedActions from './WedActions';
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Alpacas />
     </div>
   );
 };

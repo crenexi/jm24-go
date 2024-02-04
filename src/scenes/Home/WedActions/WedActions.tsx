@@ -1,14 +1,16 @@
-import React from 'react';
+import { FC } from 'react';
+import { Button } from '@components/action';
+import { Icon } from '@components/legos';
+import DataStatic from '@stypes/data-static.types';
 import sy from './WedActions.scss';
-import { WedAction } from '@stypes/data-static.types';
 
 interface WedActionsProps {
   isReady: boolean;
-  actions: WedAction[];
+  dStatic: DataStatic;
 }
 
-const WedActions: React.FC<WedActionsProps> = (props) => {
-  const { isReady, actions } = props;
+const WedActions: FC<WedActionsProps> = (props) => {
+  const { isReady, dStatic } = props;
 
   // Loading
   if (!isReady) return null;
@@ -16,7 +18,37 @@ const WedActions: React.FC<WedActionsProps> = (props) => {
   return (
     <div className={sy.edge}>
       <div className={sy.actions}>
-        <pre>{JSON.stringify(actions)}</pre>
+        <div className={sy.actions_header}>
+          <div className={sy.welcome}>
+            <Icon name="tree" />
+            <div className={sy.welcome_text1}>{dStatic.welcome?.text1}</div>
+            <div className={sy.welcome_text2}>{dStatic.welcome?.text2}</div>
+          </div>
+        </div>
+        <div className={sy.actions_list}>
+          {dStatic.wedActions?.map(
+            ({ icon, heading, subtext, buttonProps }) => (
+              <div className={sy.action} key={heading}>
+                <div className={sy.action_header}>
+                  <div className={sy.action_icon}>
+                    <Icon name={icon} />
+                  </div>
+                  <div className={sy.action_headings}>
+                    <div className={sy.action_heading}>{heading}</div>
+                    <div className={sy.action_subtext}>{subtext}</div>
+                  </div>
+                </div>
+                <div className={sy.action_button}>
+                  <Button sx={{ width: '100%' }} size="lg" {...buttonProps} />
+                </div>
+              </div>
+            ),
+          )}
+        </div>
+        <div className={sy.actions_footer}>
+          <div className={sy.enjoy_text1}>Please</div>
+          <div className={sy.enjoy_text2}>Enjoy!</div>
+        </div>
       </div>
     </div>
   );

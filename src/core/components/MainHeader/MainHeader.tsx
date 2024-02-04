@@ -23,7 +23,7 @@ const MainHeader: FC = () => {
         <h6>Welcome</h6>
       </div>
       <div className={sy.header_end}>
-        <ButtonIcon variant="secondary" name="list-check" />
+        <ButtonIcon variant="ghost" name="list-check" />
       </div>
     </header>
   );

@@ -5,20 +5,17 @@
 }
 
 .main {
-  @include gradient-d(co(background, lighter), co(background, darker));
-  padding: sp(md1) sp(sm7);
+  background-color: co(background, base);
+  padding: sp(md1) sp(sm5) 0;
 }
 
 .main_actions {
   width: 100%;
-  max-width: 40rem;
-  margin: 0 auto;
-  background-color: red;
 }
 
 .end {
-  padding: sp(md1) sp(sm7);
-  @include gradient-d(co(background, darker), co(background, base));
+  padding: sp(md1) sp(md3) sp(md6);
+  background-color: co(background, base);
 }
 
 .end_center {
@@ -28,5 +25,4 @@
 
 .end_logo {
   @include flexy(column, center, center);
-  @include fade('in', 2, 2, both);
 }
