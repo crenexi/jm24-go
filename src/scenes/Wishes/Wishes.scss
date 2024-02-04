@@ -1,5 +1,18 @@
 @use '@sutils' as *;
 
 .edge {
-  visibility: visible;
+  color: #fff;
+  padding: sp(md1) sp(sm7) sp(lg1);
+}
+
+.main {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.gif {
+  margin: sp(md1) auto;
+  max-width: 25rem;
+  border-radius: radius(r1);
+  overflow: hidden;
 }

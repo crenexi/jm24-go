@@ -1,15 +1,19 @@
-import React from 'react';
+import { FC } from 'react';
+import { assetsUrl } from '@src/shared/constants';
 import sy from './Wishes.scss';
 
-interface WishesProps {
-  children?: React.ReactNode;
-}
-
-const Wishes: React.FC<WishesProps> = ({ children = 'TODO' }) => {
-  const [value, setValue] = React.useState<null>(null);
+const Wishes: FC = () => {
+  // prettier-ignore
+  const data = {
+    gifCheers: `${assetsUrl}/cheers.gif`,
+  };
 
   return (
-    <div className={sy.edge}>{children}</div>
+    <div className={sy.edge}>
+      <div className={sy.gif}>
+        <img src={data.gifCheers} alt="Cheers gif" />
+      </div>
+    </div>
   );
 };
 
