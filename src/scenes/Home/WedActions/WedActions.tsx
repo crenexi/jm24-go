@@ -38,7 +38,12 @@ const WedActions: FC<WedActionsProps> = (props) => {
                   </div>
                 </div>
                 <div className={sy.action_button}>
-                  <Button sx={{ width: '100%' }} size="lg" {...buttonProps} />
+                  <Button
+                    sx={{ width: '100%' }}
+                    size="lg"
+                    unfocus
+                    {...buttonProps}
+                  />
                 </div>
               </div>
             ),

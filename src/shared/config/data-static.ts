@@ -2,6 +2,11 @@ import DataStatic from '@stypes/data-static.types';
 import { ButtonVariant } from '@stypes/general.types';
 import { ButtonMode } from '@components/action/ButtonBase/ButtonBase.types';
 
+// prettier-ignore
+const urls = {
+  urlSimpleBoothGallery: 'https://www.google.com',
+};
+
 const wedActions = [
   {
     icon: 'message-heart',
@@ -47,6 +52,9 @@ const wedActions = [
       variant: 'default' as ButtonVariant,
       children: 'To Gallery',
       endIcon: 'up-right-from-square',
+      mode: 'a' as ButtonMode,
+      target: '_blank',
+      href: urls.urlSimpleBoothGallery,
     },
   },
   {
