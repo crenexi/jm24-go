@@ -20,7 +20,6 @@ const WedActions: FC<WedActionsProps> = (props) => {
       <div className={sy.actions}>
         <div className={sy.actions_header}>
           <div className={sy.welcome}>
-            <Icon name="tree" />
             <div className={sy.welcome_text1}>{dStatic.welcome?.text1}</div>
             <div className={sy.welcome_text2}>{dStatic.welcome?.text2}</div>
           </div>

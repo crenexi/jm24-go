@@ -22,12 +22,13 @@
   display: inline-block;
   pointer-events: none;
   padding: 4px 8px;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: #fff;
   border-radius: 500px;
   box-shadow: shadow(s2);
   font-size: .9rem;
   line-height: 1em;
   text-transform: uppercase;
+  color: #000;
 
   :global {
     animation: zoom-in 250ms;

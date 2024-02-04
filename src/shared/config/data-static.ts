@@ -1,5 +1,6 @@
 import DataStatic from '@stypes/data-static.types';
 import { ButtonVariant } from '@stypes/general.types';
+import { ButtonMode } from '@components/action/ButtonBase/ButtonBase.types';
 
 const wedActions = [
   {
@@ -10,6 +11,8 @@ const wedActions = [
       variant: 'primary' as ButtonVariant,
       children: 'Write Wishes',
       endIcon: 'arrow-right',
+      mode: 'link' as ButtonMode,
+      to: '/wishes',
     },
   },
   {
@@ -20,6 +23,8 @@ const wedActions = [
       variant: 'primary' as ButtonVariant,
       children: 'Ways to Share',
       endIcon: 'arrow-right',
+      mode: 'link' as ButtonMode,
+      to: '/media',
     },
   },
   {
@@ -28,8 +33,10 @@ const wedActions = [
     subtext: 'Gift to our honeymoon.',
     buttonProps: {
       variant: 'primary' as ButtonVariant,
-      children: 'To Registry',
-      endIcon: 'up-right-from-square',
+      children: 'Ways to Give',
+      endIcon: 'arrow-right',
+      mode: 'link' as ButtonMode,
+      to: '/give',
     },
   },
   {
@@ -50,6 +57,8 @@ const wedActions = [
       variant: 'default' as ButtonVariant,
       children: 'See Answers',
       endIcon: 'arrow-right',
+      mode: 'link' as ButtonMode,
+      to: '/quiz',
     },
   },
 ];

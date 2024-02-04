@@ -24,8 +24,10 @@ import {
   faChurch,
   faClipboard,
   faClipboardCheck,
+  faCircleDollarToSlot,
   faCoffeePot,
   faCommentLines,
+  faCreditCard,
   faCrow,
   faDeer,
   faDownload,
@@ -69,6 +71,7 @@ import {
   faWreathLaurel,
   faXmark,
   faYinYang,
+  faMoneyBillTransfer,
 } from '@fortawesome/pro-light-svg-icons';
 
 const buildLibrary = (): void => {
@@ -96,8 +99,10 @@ const buildLibrary = (): void => {
     faChurch,
     faClipboard,
     faClipboardCheck,
+    faCircleDollarToSlot,
     faCoffeePot,
     faCommentLines,
+    faCreditCard,
     faCrow,
     faDeer,
     faDownload,
@@ -142,6 +147,7 @@ const buildLibrary = (): void => {
     faWreathLaurel,
     faXmark,
     faYinYang,
+    faMoneyBillTransfer,
   );
 };
 

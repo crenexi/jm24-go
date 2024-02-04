@@ -1,0 +1,49 @@
+@use '@sutils' as *;
+
+.edge {
+  color: #fff;
+  padding: sp(md1) sp(sm7) sp(lg1);
+}
+
+.title {
+  margin: sp(md2) 0;
+  text-align: center;
+}
+
+.main {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.waysList {
+  visibility: visible;
+}
+
+.callout, .cta {
+  @include fade('in', 1, 2, both);
+  margin-top: sp(sm4);
+}
+
+.callout {
+  padding: sp(sm2) sp(sm4);
+  background-color: co(background, lightest);
+}
+
+.copy {
+  margin-top: sp(sm4);
+  padding-top: sp(sm4);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  @include flexy(column, end, center);
+}
+
+.copy_label {
+  margin-top: sp(sm2);
+  @include text-preset('label-sm');
+}
+
+.gif {
+  margin: sp(md1) auto;
+  max-width: 25rem;
+  border-radius: radius(r1);
+  overflow: hidden;
+}

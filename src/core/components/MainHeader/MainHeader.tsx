@@ -1,10 +1,12 @@
 import { FC, Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useBreakpoint from '@hooks/use-breakpoint';
 import { assetsUrl } from '@constants/constants';
 import { ButtonIcon } from '@components/action';
 import sy from './MainHeader.scss';
 
 const MainHeader: FC = () => {
+  const navigate = useNavigate();
   const isGtSm = useBreakpoint('d1+');
 
   const urlAlpacas = `${assetsUrl}/alpacas.svg`;
@@ -15,7 +17,7 @@ const MainHeader: FC = () => {
   const jsxHeaderMain = (
     <header className={sy.header_main}>
       <div className={sy.header_start}>
-        <div className={sy.alpacas}>
+        <div className={sy.alpacas} onClick={() => navigate('/')}>
           <img src={urlAlpacas} alt="Alpacas" />
         </div>
       </div>
