@@ -10,17 +10,11 @@ const Wishes: FC = () => {
   };
 
   return (
-    <div className={sy.edge}>
-      <div className={sy.header}>
-        <ReturnHomeBlock />
+    <ReturnHomeBlock>
+      <div className={sy.gif}>
+        <img src={data.gifCheers} alt="Cheers gif" />
       </div>
-      <div className={sy.footer}>
-        <div className={sy.gif}>
-          <img src={data.gifCheers} alt="Cheers gif" />
-        </div>
-        <ReturnHomeBlock />
-      </div>
-    </div>
+    </ReturnHomeBlock>
   );
 };
 

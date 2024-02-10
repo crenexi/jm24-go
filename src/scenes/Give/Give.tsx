@@ -17,9 +17,8 @@ const Give: FC = () => {
   };
 
   return (
-    <div className={sy.edge}>
+    <ReturnHomeBlock>
       <div className={sy.main}>
-        <ReturnHomeBlock />
         <h2 className={sy.title}>Honeymoon Fund</h2>
         <div className={sy.gif}>
           <img src={data.gifCatMoney} alt="Cat Money gif" />
@@ -79,8 +78,7 @@ const Give: FC = () => {
           <img src={data.gifThanks} alt="Thanks gif" />
         </div>
       </div>
-      <ReturnHomeBlock />
-    </div>
+    </ReturnHomeBlock>
   );
 };
 

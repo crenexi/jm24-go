@@ -1,13 +1,25 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Button } from '@components/action';
 import sy from './ReturnHomeBlock.scss';
 
-const ReturnHomeBlock: FC = () => {
+type ReturnHomeBlockProps = {
+  children: ReactNode;
+};
+
+const ReturnHomeBlock: FC<ReturnHomeBlockProps> = ({ children }) => {
+  const jsxReturn = (
+    <div className={sy.buttonBox}>
+      <Button mode="link" to="/" startIcon="arrow-left">
+        <span>Main List</span>
+      </Button>
+    </div>
+  );
+
   return (
     <div className={sy.edge}>
-      <Button mode="link" to="/" startIcon="arrow-left">
-        <span>Back to Main List</span>
-      </Button>
+      <div className={sy.return}>{jsxReturn}</div>
+      <div className={sy.main}>{children}</div>
+      <div className={sy.return}>{jsxReturn}</div>
     </div>
   );
 };

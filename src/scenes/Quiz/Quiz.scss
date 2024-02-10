@@ -1,7 +1,9 @@
 @use '@sutils' as *;
 
-.edge {
-  visibility: visible;
+.main, .header {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
 }
 
 .main {
@@ -12,6 +14,20 @@
   visibility: visible;
 }
 
+// Header
+
+.header_title {
+  @include flexy(column, start, center);
+  text-align: center;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: sp(sm4);
+  margin-top: sp(md1);
+}
+
 // Quiz item header
 
 .item_header {
@@ -19,33 +35,46 @@
 }
 
 .item_cover {
-  visibility: visible;
+  @include flexy(column, center, center);
+  max-width: 40rem;
+  height: 10rem;
+  margin: sp(sm4) auto sp(sm7);
+  border-radius: radius(r1);
+  overflow: hidden;
+  @include bg-cover();
+}
+
+.item_icon {
+  @include size(6rem);
+  @include flexy(column, center, center);
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: radius('full');
+  font-size: 2rem;
 }
 
 // Quiz item main
 
 .item_main {
-  visibility: visible;
+  padding: sp(sm3) 0;
 }
 
 .item_question {
-  visibility: visible;
+  @include text-preset('headline-sm');
 }
 
 .item_answer {
-  visibility: visible;
+  margin-top: sp(sm3);
+  padding-left: sp(sm5);
+  border-left: 5px solid co(primary, lightest);
+  @include text-preset('body-lg');
 }
 
 .item_text {
-  visibility: visible;
+  font-weight: 600;
 }
 
 .item_author {
-  visibility: visible;
-}
-
-// Page actions
-
-.actions {
-  visibility: visible;
+  margin-top: sp(sm3);
+  color: co(neutral, n80);
+  font-weight: 300;
 }

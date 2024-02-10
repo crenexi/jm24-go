@@ -22,7 +22,7 @@ const gradDanger = `linear-gradient(135deg, ${coDangerDarker}, ${coDangerBase})`
 const gradSuccess = `linear-gradient(135deg, ${coSuccessDarker}, ${coSuccessBase})`;
 
 const defaults: SxVariant = {
-  color: '#bdb7c1',
+  color: '#bdb7c1 !important',
   background: '#29252c',
   borderColor: '#514a56',
   hoverColor: '#3d3841',

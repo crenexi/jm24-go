@@ -76,21 +76,21 @@ const wedActions = [
 const quizItems = [
   {
     icon: 'rings-wedding',
-    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    urlCover: `${assetsUrl}/quiz/test.jpg`,
     question: 'Minima alias et eaque perspiciatis. Et nostrum sed amet deserunt?',
     answerText: 'Minima alias et eaque perspiciatis. Et distinctio ipsa cum nostrum sed amet deserunt. Cumque velit consequatur sed molestias quia dolores non adipisci.',
     answerAuthor: 'James',
   },
   {
     icon: 'trees',
-    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    urlCover: `${assetsUrl}/quiz/test.jpg`,
     question: 'Minima eaque perspiciatis?',
     answerText: 'Et distinctio ipsa cum nostrum sed amet deserunt. Cumque velit consequatur sed molestias quia dolores non adipisci.',
     answerAuthor: 'Michelle',
   },
   {
     icon: 'castle',
-    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    urlCover: `${assetsUrl}/quiz/test.jpg`,
     question: 'Eaque perspiciatis. Et distinctio ipsa?',
     answerText: 'Minima alias et eaque perspiciatis. Et distinctio ipsa cum nostrum sed amet deserunt.',
     answerAuthor: 'James',
