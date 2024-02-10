@@ -20,6 +20,10 @@
   @include flexy(row, start, center);
 }
 
+.header_start, .header_end, .alpacas {
+  width: 3rem;
+}
+
 .header_start {
   @include flexy(column, center, center);
 }
@@ -35,7 +39,6 @@
 }
 
 .alpacas {
-  width: 3rem;
   cursor: pointer;
 }
 

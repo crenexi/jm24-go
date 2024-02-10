@@ -1,3 +1,3 @@
-import Quiz from './Quiz';
+import QuizPod from './QuizPod';
 
-export default Quiz;
+export default QuizPod;

@@ -1,8 +1,7 @@
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useBreakpoint from '@hooks/use-breakpoint';
 import { assetsUrl } from '@constants/constants';
-import { ButtonIcon } from '@components/action';
 import sy from './MainHeader.scss';
 
 const MainHeader: FC = () => {
@@ -11,8 +10,8 @@ const MainHeader: FC = () => {
 
   const urlAlpacas = `${assetsUrl}/alpacas.svg`;
 
-  // const [drawerOpen, setDrawerOpen] = useState(false);
-  // const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+  const [drawerOpen, setDrawerOpen] = useState(true);
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const jsxHeaderMain = (
     <header className={sy.header_main}>
@@ -24,9 +23,7 @@ const MainHeader: FC = () => {
       <div className={sy.header_center}>
         <h6>Welcome</h6>
       </div>
-      <div className={sy.header_end}>
-        <ButtonIcon variant="ghost" name="list-check" />
-      </div>
+      <div className={sy.header_end} />
     </header>
   );
 

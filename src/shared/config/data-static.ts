@@ -1,6 +1,7 @@
 import DataStatic from '@stypes/data-static.types';
 import { ButtonVariant } from '@stypes/general.types';
 import { ButtonMode } from '@components/action/ButtonBase/ButtonBase.types';
+import { assetsUrl } from '../constants';
 
 // prettier-ignore
 const urls = {
@@ -72,8 +73,34 @@ const wedActions = [
 ];
 
 // prettier-ignore
+const quizItems = [
+  {
+    icon: 'rings-wedding',
+    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    question: 'Minima alias et eaque perspiciatis. Et nostrum sed amet deserunt?',
+    answerText: 'Minima alias et eaque perspiciatis. Et distinctio ipsa cum nostrum sed amet deserunt. Cumque velit consequatur sed molestias quia dolores non adipisci.',
+    answerAuthor: 'James',
+  },
+  {
+    icon: 'trees',
+    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    question: 'Minima eaque perspiciatis?',
+    answerText: 'Et distinctio ipsa cum nostrum sed amet deserunt. Cumque velit consequatur sed molestias quia dolores non adipisci.',
+    answerAuthor: 'Michelle',
+  },
+  {
+    icon: 'castle',
+    urlCover: `${assetsUrl}/wedding/quiz/test.jpg`,
+    question: 'Eaque perspiciatis. Et distinctio ipsa?',
+    answerText: 'Minima alias et eaque perspiciatis. Et distinctio ipsa cum nostrum sed amet deserunt.',
+    answerAuthor: 'James',
+  },
+];
+
+// prettier-ignore
 const dataStatic: DataStatic = {
   wedActions,
+  quizItems,
   welcome: {
     text1: 'Glad you made it!',
     text2: `We're honored to host you. Below are some ways you can share with us, if you wish! Want some extra fun? Click the checklist above!`,
