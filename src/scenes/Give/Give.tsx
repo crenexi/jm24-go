@@ -63,7 +63,7 @@ const Give: FC = () => {
                 href={data.urlVenmo}
                 endIcon="up-right-from-square"
               >
-                Venmo:&nbsp;<strong>{data.idVenmo}</strong>
+                <strong>{data.idVenmo}</strong>
               </Button>
             </div>
             <div className={sy.copy}>

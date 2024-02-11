@@ -8,9 +8,8 @@ export type WedAction = {
 };
 
 export type QuizItem = {
-  icon: string;
-  urlCover: string;
   question: string;
+  answer: 'michelle' | 'james';
   answerText: string;
   answerAuthor: string;
 };

@@ -12,6 +12,7 @@ $border: 1px solid rgba(255, 255, 255, .08);
   max-width: 40rem;
   margin: 0 auto;
   text-align: center;
+  opacity: .5;
 
   &::before {
     content: '';
@@ -25,7 +26,7 @@ $border: 1px solid rgba(255, 255, 255, .08);
 }
 
 .main {
-  padding: sp(md2) 0 sp(lg1);
+  padding: sp(md1) 0;
   color: #fff;
 }
 

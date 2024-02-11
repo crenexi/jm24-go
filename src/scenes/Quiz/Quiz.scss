@@ -6,14 +6,6 @@
   margin: 0 auto;
 }
 
-.main {
-  visibility: visible;
-}
-
-.item {
-  visibility: visible;
-}
-
 // Header
 
 .header_title {
@@ -21,60 +13,84 @@
   text-align: center;
 }
 
-.actions {
+.header_actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: sp(sm4);
+  grid-template-columns: 1fr auto 1fr;
+  place-items: center;
+  grid-gap: sp(sm5);
+  margin-top: sp(sm7);
+  padding: sp(sm2);
+  background-color: co(background, base);
+  border: 1px solid co(background, lighter);
+  border-radius: radius(r2);
+
+  button {
+    width: 100%;
+  }
+}
+
+.header_pages {
+  opacity: .5;
+  font-size: .9rem;
+  letter-spacing: -1.5px;
+}
+
+// Question and answer text
+
+.question {
+  min-height: 6rem;
   margin-top: sp(md1);
-}
-
-// Quiz item header
-
-.item_header {
-  visibility: visible;
-}
-
-.item_cover {
-  @include flexy(column, center, center);
-  max-width: 40rem;
-  height: 10rem;
-  margin: sp(sm4) auto sp(sm7);
-  border-radius: radius(r1);
-  overflow: hidden;
-  @include bg-cover();
-}
-
-.item_icon {
-  @include size(6rem);
-  @include flexy(column, center, center);
-  background-color: rgba(0, 0, 0, .5);
-  border-radius: radius('full');
-  font-size: 2rem;
-}
-
-// Quiz item main
-
-.item_main {
-  padding: sp(sm3) 0;
-}
-
-.item_question {
   @include text-preset('headline-sm');
 }
 
-.item_answer {
-  margin-top: sp(sm3);
+.answer {
+  margin-top: sp(sm7);
   padding-left: sp(sm5);
   border-left: 5px solid co(primary, lightest);
-  @include text-preset('body-lg');
+  @include text-preset('body-md');
 }
 
-.item_text {
+.answer_text {
   font-weight: 600;
 }
 
-.item_author {
+.answer_author {
   margin-top: sp(sm3);
   color: co(neutral, n80);
   font-weight: 300;
+}
+
+// Answer portraits
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: sp(sm4);
+  margin-top: sp(sm6);
+}
+
+.option {
+  @include flexy(column, center, center);
+  padding: sp(sm3);
+  background-color: co(background, base);
+  border: 5px solid co(background, lightest);
+  border-radius: radius(r1);
+  transition-duration: 150ms;
+  opacity: .33;
+
+  &__answer {
+    border-color: co(success, base);
+    background-color: co(background, lighter);
+    opacity: 1;
+  }
+
+  &__loading img {
+    @include spin('cw', 5);
+  }
+
+  img {
+    @include size(4rem);
+    border-radius: radius('full');
+    @include bg-cover();
+  }
 }

@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import useDataStatic from '@hooks/use-data-static';
+import { assetsUrl } from '@src/shared/constants';
 import logger from '@services/logger';
 import Quiz from './Quiz';
 
@@ -27,12 +28,18 @@ const QuizPod: FC = () => {
 
   // Pages state and actions
   const pages = {
+    count: quizItems.length,
     index: pageIndex,
     prev: () => setPageIndex(rotatePage(quizItems, pageIndex, 'prev')),
     next: () => setPageIndex(rotatePage(quizItems, pageIndex, 'next')),
   };
 
-  return <Quiz currItem={currItem} pages={pages} />;
+  const portraits = {
+    urlMichelle: `${assetsUrl}/portraits/michelle.jpg`,
+    urlJames: `${assetsUrl}/portraits/james.jpg`,
+  };
+
+  return <Quiz currItem={currItem} pages={pages} portraits={portraits} />;
 };
 
 export default QuizPod;
