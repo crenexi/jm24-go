@@ -11,13 +11,6 @@ const Home = () => {
           <WedActions />
         </div>
       </div>
-      <div className={sy.end}>
-        <div className={sy.end_center}>
-          <div className={sy.end_logo}>
-            <WedLogo variant="main" size="lg" />
-          </div>
-        </div>
-      </div>
       <Alpacas />
     </div>
   );

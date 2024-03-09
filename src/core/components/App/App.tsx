@@ -19,9 +19,6 @@ const AppView: FC<AppViewProps> = ({ isSplash }) => (
         <div className={sy.splash}>
           <div className={sy.splash_main}>
             <Loading />
-            <div className={sy.splash_logo}>
-              <WedLogo variant="dark" size="sm" />
-            </div>
           </div>
         </div>
       ) : (

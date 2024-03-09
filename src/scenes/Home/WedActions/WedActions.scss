@@ -7,14 +7,14 @@
 }
 
 .actions_header {
-  margin-bottom: sp(sm7);
-  padding-bottom: sp(sm7);
+  margin-bottom: sp(md1);
+  padding-bottom: sp(md1);
   border-bottom: 1px solid rgba(255, 255, 255, .07);
 }
 
 .actions_footer {
-  margin-top: sp(sm7);
-  padding-top: sp(sm7);
+  margin-top: sp(md1);
+  padding-top: sp(md1);
   border-top: 1px solid rgba(255, 255, 255, .07);
   text-align: center;
   color: #fff;
@@ -42,18 +42,12 @@
 
 .welcome_text1 {
   text-align: center;
-  @include text-preset('headline-md');
+  @include text-preset('headline-lg');
 }
 
 .welcome_text2 {
-  margin-top: sp(sm4);
+  margin-top: sp(sm5);
   @include text-preset('body-md');
-
-  &::first-letter {
-    initial-letter: 2;
-    opacity: .5;
-    margin-right: 5px;
-  }
 }
 
 // Action item
@@ -63,12 +57,13 @@
 }
 
 .action {
-  padding: sp(sm5);
+  padding: sp(sm5) sp(sm4);
   background-color: co(background, lighter);
-  border-radius: radius(r4);
+  border-radius: radius(r3);
+  box-shadow: shadow(s6);
 
   &:not(:first-child) {
-    margin-top: sp(sm5);
+    margin-top: sp(sm7);
   }
 }
 
@@ -98,15 +93,15 @@
 }
 
 .action_subtext {
+  margin-top: sp(sm1);
   @include text-preset('label-md');
-  margin-bottom: -5px;
   opacity: .5;
 }
 
 // Action button
 
 .action_button {
-  margin-top: sp(sm4);
+  margin-top: sp(sm5);
   padding: 0 sp(sm3);
   @include flexy(column, center, center);
 }

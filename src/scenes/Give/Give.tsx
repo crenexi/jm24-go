@@ -12,16 +12,18 @@ const Give: FC = () => {
     urlVenmo: 'https://www.venmo.com/u/Michelle-Florero',
     idVenmo: 'Michelle-Florero',
     idZelle: 'james@crenexi.com',
-    gifCatMoney: `${assetsUrl}/cat-money.gif`,
     gifThanks: `${assetsUrl}/thanks.gif`,
   };
 
   return (
     <ReturnHomeBlock>
       <div className={sy.main}>
-        <h2 className={sy.title}>Honeymoon Fund</h2>
-        <div className={sy.gif}>
-          <img src={data.gifCatMoney} alt="Cat Money gif" />
+        <div className={sy.titles}>
+          <h2>Honeymoon Fund</h2>
+          <p>
+            Thanks for your gift interest! We're accepting the following ways to
+            give towards our London honeymoon!
+          </p>
         </div>
         <div className={sy.waysList}>
           <GiveAction icon="circle-dollar-to-slot" heading="In-Person">
@@ -31,7 +33,7 @@ const Give: FC = () => {
             <p>Gift with credit/debit on our registry</p>
             <div className={sy.cta}>
               <Button
-                variant="primary"
+                variant="secondary"
                 size="lg"
                 mode="a"
                 target="_blank"
@@ -56,7 +58,7 @@ const Give: FC = () => {
             <p>Venmo Michelle at</p>
             <div className={sy.cta}>
               <Button
-                variant="primary"
+                variant="secondary"
                 size="lg"
                 mode="a"
                 target="_blank"

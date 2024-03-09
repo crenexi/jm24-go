@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background-color: co(background, darker);
+  background-color: co(background, base);
   -webkit-overflow-scrolling: touch;
 }
 
@@ -47,7 +47,7 @@ img, video {
 // Pseudo selection
 
 ::selection {
-  background-color: co(primary, darker);
+  background-color: co(bright, base);
   color: #fff;
 }
 

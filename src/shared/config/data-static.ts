@@ -97,8 +97,8 @@ const dataStatic: DataStatic = {
   wedActions,
   quizItems,
   welcome: {
-    text1: 'Glad you made it!',
-    text2: `We're honored to host you. Below are some ways you can share with us, if you wish! Want some extra fun? Click the checklist above!`,
+    text1: 'Welcome',
+    text2: `to the wedding of Michelle & James! We're honored to host you. You may be looking for one of these actions:`,
   }
 };
 

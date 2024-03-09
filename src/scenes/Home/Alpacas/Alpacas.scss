@@ -33,11 +33,11 @@
 }
 
 .fade {
-  @include gradient-y(rgba(41, 37, 44, 0), #29252c);
+  @include gradient-y(rgb(42, 35, 47, 0), rgb(42, 35, 47));
 }
 
 .field {
-  background-color: #29252c;
+  background-color: rgb(42, 35, 47);
 }
 
 .alpaca {

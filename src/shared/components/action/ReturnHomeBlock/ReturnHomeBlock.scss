@@ -3,7 +3,7 @@
 $border: 1px solid rgba(255, 255, 255, .08);
 
 .edge {
-  padding: sp(sm7) sp(sm7) sp(md1);
+  padding: sp(sm7) 6vw sp(md1);
 }
 
 .return {
@@ -17,10 +17,10 @@ $border: 1px solid rgba(255, 255, 255, .08);
   &::before {
     content: '';
     position: absolute;
-    top: calc(50% - 2px);
+    top: calc(50%);
     left: 0;
     width: 100%;
-    border-bottom: 2px solid #514a56;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
     z-index: -1;
   }
 }
@@ -32,5 +32,5 @@ $border: 1px solid rgba(255, 255, 255, .08);
 
 .buttonBox {
   display: inline-block;
-  background-color: co(background, darker);
+  background-color: co(background, base);
 }

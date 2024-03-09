@@ -2,9 +2,10 @@
 
 .action {
   @include flexy(column, center, center);
-  background-color: co(background, base);
-  border-radius: radius(r5);
-  padding: sp(sm6) sp(sm7);
+  background-color: co(background, lighter);
+  box-shadow: shadow(s1);
+  border-radius: radius(r3);
+  padding: sp(sm6) sp(sm8);
 
   &:not(:first-child) {
     margin-top: sp(sm5);
@@ -23,7 +24,12 @@
 }
 
 .main {
-  margin-top: sp(sm2);
+  margin-top: sp(sm3);
   @include flexy(column, center, center);
   @include text-preset('body-sm');
+
+  p {
+    line-height: 1.4em;
+    text-align: center;
+  }
 }

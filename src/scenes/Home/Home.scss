@@ -1,28 +1,13 @@
 @use '@sutils' as *;
 
-.edge {
-  background-color: co(background, darker);
-}
+// .edge {
+  // background-color: co(primary, darkest);
+// }
 
 .main {
-  background-color: co(background, base);
-  padding: sp(md1) sp(sm5) 0;
+  padding: sp(md3) 6vw sp(lg2);
 }
 
 .main_actions {
   width: 100%;
-}
-
-.end {
-  padding: sp(md1) sp(md3) sp(md6);
-  background-color: co(background, base);
-}
-
-.end_center {
-  max-width: 66vw;
-  margin: 0 auto;
-}
-
-.end_logo {
-  @include flexy(column, center, center);
 }

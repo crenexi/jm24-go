@@ -9,19 +9,18 @@ const MainHeader: FC = () => {
   const isGtSm = useBreakpoint('d1+');
 
   const urlAlpacas = `${assetsUrl}/alpacas.svg`;
+  const urlLogo = `${assetsUrl}/logo-light.svg`;
 
-  const [drawerOpen, setDrawerOpen] = useState(true);
-  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+  // const [drawerOpen, setDrawerOpen] = useState(true);
+  // const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const jsxHeaderMain = (
     <header className={sy.header_main}>
-      <div className={sy.header_start}>
-        <div className={sy.alpacas} onClick={() => navigate('/')}>
-          <img src={urlAlpacas} alt="Alpacas" />
-        </div>
-      </div>
+      <div className={sy.header_start} />
       <div className={sy.header_center}>
-        <h6>Welcome</h6>
+        <div className={sy.logo} onClick={() => navigate('/')}>
+          <img src={urlLogo} alt="Logo" />
+        </div>
       </div>
       <div className={sy.header_end} />
     </header>
