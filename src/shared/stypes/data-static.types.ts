@@ -9,9 +9,9 @@ export type WedAction = {
 
 export type QuizItem = {
   question: string;
-  answer: 'michelle' | 'james';
+  answerNum: string;
   answerText: string;
-  answerAuthor: string;
+  answerPicUrl: string;
 };
 
 type DataStatic = {

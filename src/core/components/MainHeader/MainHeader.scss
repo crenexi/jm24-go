@@ -38,8 +38,9 @@
 }
 
 .logo {
-  @include size(4rem);
   cursor: pointer;
+  @include size(4rem);
+  @include zoom('in', 1, 1, both);
 }
 
 .header_end {

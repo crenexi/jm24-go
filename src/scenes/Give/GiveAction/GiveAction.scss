@@ -5,7 +5,7 @@
   background-color: co(background, lighter);
   box-shadow: shadow(s1);
   border-radius: radius(r3);
-  padding: sp(sm6) sp(sm8);
+  padding: sp(sm6) sp(sm7);
 
   &:not(:first-child) {
     margin-top: sp(sm5);

@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { QuizItem } from '@stypes/data-static.types';
 import { Button, ReturnHomeBlock } from '@components/action';
-import { Icon } from '@components/legos';
+import { LoadingBlock } from '@components/feedback';
 import classNames from 'classnames';
 import sy from './Quiz.scss';
 
@@ -13,71 +13,103 @@ type QuizProps = {
     prev: () => void;
     next: () => void;
   };
-  portraits: {
-    urlMichelle: string;
-    urlJames: string;
-  };
 };
 
-const Quiz: FC<QuizProps> = ({ currItem, pages, portraits }) => {
-  const { question, answerText, answerAuthor } = currItem;
+const Quiz: FC<QuizProps> = ({ currItem, pages }) => {
+  const { question, answerNum, answerText, answerPicUrl } = currItem;
 
-  const [cnMichelle, setCnMichelle] = useState<string>(sy.option);
-  const [cnJames, setCnJames] = useState<string>(sy.option);
+  const isFirst = pages.index === 0;
+  const isLast = pages.index === pages.count - 1;
+
+  const sxAnswerPic = { backgroundImage: `url('${answerPicUrl}')` };
+
+  const cnAnswerNumDefault = classNames(sy.answer_num, sy.answer_num__loading);
+  const [cnAnswerNum, setCnAnswerNum] = useState<string>(cnAnswerNumDefault);
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setCnJames(classNames(sy.option, sy.option__loading));
-    setCnMichelle(classNames(sy.option, sy.option__loading));
+    setIsLoading(true);
 
     const timeout = setTimeout(() => {
-      switch (currItem.answer) {
-        case 'michelle':
-          setCnMichelle(classNames(sy.option, sy.option__answer));
-          setCnJames(sy.option);
-          break;
-        case 'james':
-          setCnMichelle(sy.option);
-          setCnJames(classNames(sy.option, sy.option__answer));
-          break;
-      }
+      setCnAnswerNum(sy.answer_num);
+      setIsLoading(false);
     }, 3000);
 
     return () => clearTimeout(timeout);
   }, [currItem]);
 
-  return (
-    <ReturnHomeBlock>
-      <div className={sy.header}>
-        <div className={sy.header_title}>
-          <h2>Who Knows</h2>
-          <h6>The couple?</h6>
-        </div>
+  // Header actions
+  const jsxHeaderActions = (() => {
+    if (isLast) {
+      return (
         <div className={sy.header_actions}>
-          <Button variant="ghost" click={pages.prev} startIcon="chevron-left">
-            Previous
-          </Button>
-          <div className={sy.header_pages}>
-            {pages.index + 1} / {pages.count}
+          <div className={sy.header_actions_item}>
+            <Button click={pages.next} startIcon="list-check">
+              Start Over
+            </Button>
           </div>
-          <Button variant="primary" click={pages.next} endIcon="chevron-right">
+        </div>
+      );
+    }
+
+    const handleClick = (dir: 'prev' | 'next') => {
+      setCnAnswerNum(cnAnswerNumDefault);
+      if (dir === 'prev') pages.prev();
+      if (dir === 'next') pages.next();
+    };
+
+    return (
+      <div className={sy.header_actions}>
+        {!isFirst && (
+          <div className={sy.header_actions_item}>
+            <Button
+              variant="ghost"
+              click={() => handleClick('prev')}
+              startIcon="chevron-left"
+            >
+              Prev
+            </Button>
+          </div>
+        )}
+        <div className={sy.header_pages}>
+          {pages.index + 1} / {pages.count}
+        </div>
+        <div className={sy.header_actions_item}>
+          <Button
+            variant="primary"
+            click={() => handleClick('next')}
+            endIcon="chevron-right"
+          >
             Next
           </Button>
         </div>
       </div>
+    );
+  })();
+
+  return (
+    <ReturnHomeBlock>
+      <div className={sy.header}>
+        <div className={sy.header_title}>
+          <h2>Know</h2>
+          <h6>the number?</h6>
+        </div>
+      </div>
       <div className={sy.main}>
-        <div className={sy.question}>{question}</div>
-        <div className={sy.options}>
-          <div className={cnMichelle}>
-            <img src={portraits.urlMichelle} alt="Michelle portrait" />
-          </div>
-          <div className={cnJames}>
-            <img src={portraits.urlJames} alt="James portrait" />
-          </div>
+        {jsxHeaderActions}
+        <div className={sy.question}>
+          <span>&ldquo;{question}&rdquo;</span>
         </div>
-        <div className={sy.answer}>
-          <div className={sy.answer_text}>{answerText}</div>
-          <div className={sy.answer_author}>&mdash; {answerAuthor}</div>
-        </div>
+        {isLoading ? (
+          <LoadingBlock iconName="square-question" padSize="sm" speed={2} />
+        ) : (
+          <div className={sy.answer}>
+            <div className={cnAnswerNum}>{answerNum}</div>
+            <div className={sy.answer_pic} style={sxAnswerPic} />
+            <div className={sy.answer_text}>{answerText}</div>
+          </div>
+        )}
       </div>
     </ReturnHomeBlock>
   );
