@@ -16,44 +16,23 @@ const WedActions: FC<WedActionsProps> = (props) => {
   if (!isReady) return null;
 
   return (
-    <div className={sy.edge}>
-      <div className={sy.actions}>
-        <div className={sy.actions_header}>
-          <div className={sy.welcome}>
-            <div className={sy.welcome_text1}>{dStatic.welcome?.text1}</div>
-            <div className={sy.welcome_text2}>{dStatic.welcome?.text2}</div>
+    <div className={sy.list}>
+      {dStatic.wedActions?.map(({ icon, heading, subtext, buttonProps }) => (
+        <div className={sy.item} key={heading}>
+          <div className={sy.item_header}>
+            <div className={sy.item_icon}>
+              <Icon name={icon} />
+            </div>
+            <div className={sy.item_headings}>
+              <div className={sy.item_heading}>{heading}</div>
+              <div className={sy.item_subtext}>{subtext}</div>
+            </div>
+          </div>
+          <div className={sy.item_button}>
+            <Button sx={{ width: '100%' }} size="lg" unfocus {...buttonProps} />
           </div>
         </div>
-        <div className={sy.actions_list}>
-          {dStatic.wedActions?.map(
-            ({ icon, heading, subtext, buttonProps }) => (
-              <div className={sy.action} key={heading}>
-                <div className={sy.action_header}>
-                  <div className={sy.action_icon}>
-                    <Icon name={icon} />
-                  </div>
-                  <div className={sy.action_headings}>
-                    <div className={sy.action_heading}>{heading}</div>
-                    <div className={sy.action_subtext}>{subtext}</div>
-                  </div>
-                </div>
-                <div className={sy.action_button}>
-                  <Button
-                    sx={{ width: '100%' }}
-                    size="lg"
-                    unfocus
-                    {...buttonProps}
-                  />
-                </div>
-              </div>
-            ),
-          )}
-        </div>
-        <div className={sy.actions_footer}>
-          <div className={sy.enjoy_text1}>Please</div>
-          <div className={sy.enjoy_text2}>Enjoy!</div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 };

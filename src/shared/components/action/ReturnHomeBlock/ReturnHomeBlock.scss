@@ -6,11 +6,13 @@ $border: 1px solid rgba(255, 255, 255, .08);
   padding: sp(sm7) 6vw sp(md5);
 }
 
+.edge_inner {
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
 .return {
   position: relative;
-  width: 100%;
-  max-width: 40rem;
-  margin: 0 auto;
   text-align: center;
   opacity: .5;
 

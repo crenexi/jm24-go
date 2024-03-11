@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { assetsUrl } from '@src/shared/constants';
 import { Button, ButtonCopy, ReturnHomeBlock } from '@components/action';
+import { Title } from '@components/display';
 import GiveAction from './GiveAction';
 import sy from './Give.scss';
 
@@ -19,7 +20,7 @@ const Give: FC = () => {
     <ReturnHomeBlock>
       <div className={sy.main}>
         <div className={sy.titles}>
-          <h2>Honeymoon Fund</h2>
+          <Title title="Give" subtitle="To our honeymoon fund" />
           <p>
             Thanks for your gift interest! We're accepting the following ways to
             give towards our London honeymoon!

@@ -10,16 +10,18 @@ const ReturnHomeBlock: FC<ReturnHomeBlockProps> = ({ children }) => {
   const jsxReturn = (
     <div className={sy.buttonBox}>
       <Button mode="link" to="/" startIcon="arrow-left">
-        <span>Main List</span>
+        <span>MENU</span>
       </Button>
     </div>
   );
 
   return (
     <div className={sy.edge}>
-      <div className={sy.return}>{jsxReturn}</div>
-      <div className={sy.main}>{children}</div>
-      <div className={sy.return}>{jsxReturn}</div>
+      <div className={sy.edge_inner}>
+        <div className={sy.return}>{jsxReturn}</div>
+        <div className={sy.main}>{children}</div>
+        <div className={sy.return}>{jsxReturn}</div>
+      </div>
     </div>
   );
 };

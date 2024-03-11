@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { QuizItem } from '@stypes/data-static.types';
 import { Button, ReturnHomeBlock } from '@components/action';
 import { LoadingBlock } from '@components/feedback';
+import { Title } from '@components/display';
 import classNames from 'classnames';
 import sy from './Quiz.scss';
 
@@ -40,11 +41,11 @@ const Quiz: FC<QuizProps> = ({ currItem, pages }) => {
   }, [currItem]);
 
   // Header actions
-  const jsxHeaderActions = (() => {
+  const jsxActions = (() => {
     if (isLast) {
       return (
-        <div className={sy.header_actions}>
-          <div className={sy.header_actions_item}>
+        <div className={sy.actions}>
+          <div className={sy.actions_item}>
             <Button click={pages.next} startIcon="list-check">
               Start Over
             </Button>
@@ -60,22 +61,21 @@ const Quiz: FC<QuizProps> = ({ currItem, pages }) => {
     };
 
     return (
-      <div className={sy.header_actions}>
-        {!isFirst && (
-          <div className={sy.header_actions_item}>
-            <Button
-              variant="ghost"
-              click={() => handleClick('prev')}
-              startIcon="chevron-left"
-            >
-              Prev
-            </Button>
-          </div>
-        )}
-        <div className={sy.header_pages}>
+      <div className={sy.actions}>
+        <div className={sy.actions_item}>
+          <Button
+            variant="ghost"
+            click={() => handleClick('prev')}
+            startIcon="chevron-left"
+            disabled={isFirst}
+          >
+            Prev
+          </Button>
+        </div>
+        <div className={sy.actions_pages}>
           {pages.index + 1} / {pages.count}
         </div>
-        <div className={sy.header_actions_item}>
+        <div className={sy.actions_item}>
           <Button
             variant="primary"
             click={() => handleClick('next')}
@@ -90,14 +90,9 @@ const Quiz: FC<QuizProps> = ({ currItem, pages }) => {
 
   return (
     <ReturnHomeBlock>
-      <div className={sy.header}>
-        <div className={sy.header_title}>
-          <h2>Know</h2>
-          <h6>the number?</h6>
-        </div>
-      </div>
+      <Title title="Know" subtitle="the number?" />
       <div className={sy.main}>
-        {jsxHeaderActions}
+        {jsxActions}
         <div className={sy.question}>
           <span>&ldquo;{question}&rdquo;</span>
         </div>

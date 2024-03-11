@@ -28,7 +28,7 @@ const defaults: SxVariant = {
     boxShadow: `inset 0 0 0 2px #1f1c21`,
   },
   disabled: {
-    color: '#ffffff40',
+    color: '#ffffff40 !important',
     borderColor: '#514a56',
     textShadow: 'none',
     boxShadow: 'none',

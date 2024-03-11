@@ -1,5 +1,42 @@
 @use '@sutils' as *;
 
-.edge {
-  visibility: visible;
+// Intro
+
+.intro_text {
+  margin-top: sp(sm7);
+}
+
+.callout {
+  @include flexy(column, center, center);
+  padding: sp(sm3);
+  background-color: rgba(0, 0, 0, .15);
+  font-size: .9rem;
+  text-align: center;
+
+  button {
+    margin-top: 5px;
+  }
+}
+
+// Wifi Warning
+
+.wifiWarn {
+  margin-top: sp(sm7);
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+  padding: sp(sm3) sp(sm4);
+  background-color: #fff;
+  border-radius: radius(r2);
+  color: #000;
+}
+
+.wifiWarn_icon {
+  font-size: 1.7rem;
+}
+
+.wifiWarn_text {
+  margin-left: sp(sm4);
+  @include text-preset('body-sm');
+  letter-spacing: -.2px;
+  font-weight: 700;
 }

@@ -6,60 +6,13 @@
   margin: 0 auto;
 }
 
-.actions_header {
-  margin-bottom: sp(md1);
-  padding-bottom: sp(md1);
-  border-bottom: 1px solid rgba(255, 255, 255, .07);
-}
-
-.actions_footer {
-  margin-top: sp(md1);
-  padding-top: sp(md1);
-  border-top: 1px solid rgba(255, 255, 255, .07);
-  text-align: center;
-  color: #fff;
-}
-
-.enjoy_text1 {
-  @include text-type(primary, 400);
-  color: co(neutral, n100);
-  font-size: 1.5rem;
-  line-height: 1.2em;
-}
-
-.enjoy_text2 {
-  @include text-type(base, 300, uppercase);
-  font-size: 2rem;
-  line-height: 1.2em;
-}
-
-// Welcome text
-
-.welcome {
-  color: #fff;
-  padding: 0 sp(sm3);
-}
-
-.welcome_text1 {
-  text-align: center;
-  @include text-preset('headline-lg');
-  @include fade('in', 1, 1, both);
-}
-
-.welcome_text2 {
-  max-width: 22rem;
-  margin-top: sp(sm5);
-  @include text-preset('body-md');
-  @include slide('upward-in', 1, 1, both);
-}
-
 // Action item
 
-.actions_list {
+.list {
   @include fade('in', 1, 2, both);
 }
 
-.action {
+.item {
   padding: sp(sm5) sp(sm4);
   background-color: co(background, lighter);
   border-radius: radius(r3);
@@ -73,24 +26,24 @@
 
 // Action header
 
-.action_header {
+.item_header {
   @include flexy(column, start, center);
   flex-wrap: nowrap;
   color: #fff;
 }
 
-.action_icon {
+.item_icon {
   margin-top: -3px;
   font-size: 2.2rem;
   @include rotate('in', 1, 2, both);
 }
 
-.action_headings {
+.item_headings {
   margin-top: sp(sm2);
   text-align: center;
 }
 
-.action_heading {
+.item_heading {
   visibility: visible;
   @include text-type('primary', 400);
   line-height: 1.1em;
@@ -98,7 +51,7 @@
   @include slide('forward-in', 1, 3, both);
 }
 
-.action_subtext {
+.item_subtext {
   margin-top: sp(sm1);
   @include text-preset('label-md');
   opacity: .5;
@@ -107,7 +60,7 @@
 
 // Action button
 
-.action_button {
+.item_button {
   margin-top: sp(sm5);
   padding: 0 sp(sm3);
   @include flexy(column, center, center);
@@ -117,7 +70,7 @@
 // Desktop
 
 @include breakpoint('d1+') {
-  .action {
+  .item {
     padding: sp(sm6) sp(md1);
 
     &:not(:first-child) {

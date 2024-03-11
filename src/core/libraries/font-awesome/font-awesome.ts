@@ -1,7 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 // prettier-ignore
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle, faDropbox, faApple, } from '@fortawesome/free-brands-svg-icons';
 
 // prettier-ignore
 import {
@@ -23,9 +23,11 @@ import {
   faCheckToSlot,
   faChevronRight,
   faChevronLeft,
+  faChevronDown,
   faChurch,
   faClipboard,
   faClipboardCheck,
+  faCloudArrowUp,
   faCircleDollarToSlot,
   faCoffeePot,
   faCommentLines,
@@ -38,6 +40,7 @@ import {
   faEnvelopeOpenDollar,
   faEnvelopeOpenText,
   faFlaskRoundPotion,
+  faFileVideo,
   faFolderImage,
   faFrog,
   faGem,
@@ -63,6 +66,7 @@ import {
   faSquareQuestion,
   faSquirrel,
   faStarShooting,
+  faTabletScreenButton,
   faTrash,
   faTrees,
   faTurntable,
@@ -75,6 +79,9 @@ import {
   faXmark,
   faYinYang,
   faMoneyBillTransfer,
+  faRightLeft,
+  faArrowUpFromSquare,
+  faSignalSlash,
 } from '@fortawesome/pro-light-svg-icons';
 
 const buildLibrary = (): void => {
@@ -82,6 +89,8 @@ const buildLibrary = (): void => {
   library.add(
     // Brands
     faGoogle,
+    faDropbox,
+    faApple,
     // Lights
     faArrowLeft,
     faArrowRight,
@@ -104,6 +113,7 @@ const buildLibrary = (): void => {
     faChurch,
     faClipboard,
     faClipboardCheck,
+    faCloudArrowUp,
     faCircleDollarToSlot,
     faCoffeePot,
     faCommentLines,
@@ -116,6 +126,7 @@ const buildLibrary = (): void => {
     faEnvelopeOpenDollar,
     faEnvelopeOpenText,
     faFlaskRoundPotion,
+    faFileVideo,
     faFolderImage,
     faFrog,
     faGem,
@@ -134,6 +145,7 @@ const buildLibrary = (): void => {
     faPlus,
     faRaccoon,
     faRestroom,
+    faChevronDown,
     faRingsWedding,
     faScrollOld,
     faSignalStream,
@@ -142,6 +154,7 @@ const buildLibrary = (): void => {
     faSquareQuestion,
     faSquirrel,
     faStarShooting,
+    faTabletScreenButton,
     faTrash,
     faTrees,
     faTurntable,
@@ -154,6 +167,9 @@ const buildLibrary = (): void => {
     faXmark,
     faYinYang,
     faMoneyBillTransfer,
+    faArrowUpFromSquare,
+    faRightLeft,
+    faSignalSlash,
   );
 };
 

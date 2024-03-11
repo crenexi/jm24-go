@@ -35,7 +35,7 @@ const defaults: SxVariant = {
     boxShadow: `inset 0 0 0 2px #29252c`,
   },
   disabled: {
-    color: '#ffffff40',
+    color: '#ffffff40 !important',
     borderColor: '#514a56',
     textShadow: 'none',
     boxShadow: 'none',
@@ -149,6 +149,10 @@ const variantGhost: SxVariant = {
   },
   '&:focus': {
     ...defaults.focus,
+  },
+  '&.Mui-disabled': {
+    ...defaults.disabled,
+    borderColor: 'transparent',
   },
 };
 
