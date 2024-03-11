@@ -210,6 +210,11 @@ const dataStatic: DataStatic = {
           heading: 'Complete Transfer',
           text: `You'll see a 'Sent' confirmation once complete.`
         },
+        {
+          icon: 'camera-web',
+          heading: 'Photo Booth',
+          text: `When done, leave the iPad on 'Simple Booth' for guests.`,
+        }
       ],
     },
     email: {

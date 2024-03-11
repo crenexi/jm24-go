@@ -73,8 +73,10 @@ const Media: FC = () => {
         steps={dMedia.email.steps}
       >
         <div className={sy.callout}>
-          <span>{email}</span>
           <ButtonCopy text={email} />
+          <div className={sy.copy_label}>
+            Copy <strong>{email}</strong>
+          </div>
         </div>
       </MediaOption>
     </ReturnHomeBlock>

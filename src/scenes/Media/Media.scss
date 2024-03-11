@@ -18,6 +18,11 @@
   }
 }
 
+.copy_label {
+  margin-top: sp(sm2);
+  @include text-preset('label-sm');
+}
+
 // Wifi Warning
 
 .wifiWarn {

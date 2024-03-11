@@ -24,6 +24,7 @@
   border-radius: radius(r3);
   box-shadow: shadow(s1);
   mix-blend-mode: lighten;
+  @include fade('in', 3, 3, both);
   overflow: hidden;
 }
 
