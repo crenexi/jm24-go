@@ -1,8 +1,19 @@
 @use '@sutils' as *;
 
-.main {
-  max-width: 30rem;
-  margin: 0 auto;
+@keyframes invite {
+  0% {
+    transform: translateY(-7px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(7px);
+    opacity: 0;
+  }
 }
 
 .gif {
@@ -10,4 +21,23 @@
   max-width: 25rem;
   border-radius: radius(r1);
   overflow: hidden;
+}
+
+// Header
+
+.header_icon,
+.header_invite {
+  text-align: center;
+}
+
+.header_icon {
+  margin-bottom: sp(sm1);
+  color: co(primary, base);
+  font-size: 1.7rem;
+}
+
+.header_invite {
+  font-size: 2rem;
+  color: co(primary, darker);
+  animation: invite 1s infinite ease;
 }
