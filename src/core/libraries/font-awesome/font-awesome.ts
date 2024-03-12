@@ -6,6 +6,7 @@ import { faGoogle, faDropbox, faApple, } from '@fortawesome/free-brands-svg-icon
 // prettier-ignore
 import {
   faArrowLeft,
+  faPaperPlaneTop,
   faArrowRight,
   faBars,
   faBird,
@@ -94,6 +95,7 @@ const buildLibrary = (): void => {
     faApple,
     // Lights
     faArrowLeft,
+    faPaperPlaneTop,
     faArrowRight,
     faBars,
     faBird,

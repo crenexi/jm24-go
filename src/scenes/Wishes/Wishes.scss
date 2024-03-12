@@ -17,7 +17,7 @@
 }
 
 .gif {
-  margin: sp(md1) auto;
+  margin: sp(sm6) auto 0;
   max-width: 25rem;
   border-radius: radius(r1);
   overflow: hidden;
@@ -33,11 +33,18 @@
 .header_icon {
   margin-bottom: sp(sm1);
   color: co(primary, base);
-  font-size: 1.7rem;
+  font-size: 1.8rem;
 }
 
 .header_invite {
-  font-size: 2rem;
+  margin-top: sp(sm4);
+  font-size: 1.5rem;
   color: co(primary, darker);
-  animation: invite 1s infinite ease;
+  animation: invite 1500ms infinite ease;
+}
+
+// Footer
+
+.footer .gif {
+  margin: sp(md1) auto 0;
 }
