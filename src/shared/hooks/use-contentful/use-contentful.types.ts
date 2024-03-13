@@ -1,12 +1,7 @@
-export type WithId = {
-  id: string;
-};
+export type WithId = { id: string };
 
-export type ListfulAddFn<T extends WithId> = (
-  item: Omit<T, 'id'>,
-) => Promise<boolean>;
-
-export type ListfulRemoveFn = (itemId: string) => Promise<boolean>;
+export type ListfulAddFn<T> = (item: T) => void;
+export type ListfulRemoveFn = (itemId: string) => void;
 
 export type Listful<T extends WithId> = {
   add: ListfulAddFn<T>;
@@ -14,8 +9,8 @@ export type Listful<T extends WithId> = {
 };
 
 export type UseContentfulReturn<T extends WithId> = {
-  data: T[] | null;
+  data: T[] | undefined;
   listful: Listful<T>;
   isLoading: boolean;
-  error: string;
+  error: null | { message: string };
 };

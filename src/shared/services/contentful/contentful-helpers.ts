@@ -29,13 +29,13 @@ export const timeoutSignal: TimeoutSignalFn = (ms = TIMEOUT) => {
 export const handleTimeoutErr: HandleTimeoutErrFn = (err) => {
   const errMsg = `Fetching data failed: ${err.message || err}`;
   logger.error(errMsg);
-  return new Err(errMsg, 499, 'NetworkErr');
+  throw new Err(errMsg, 499, 'NetworkErr');
 };
 
 export const handleUnknownErr: HandleUnknownErrFn = (err) => {
   const errMsg = `Unexpected error: ${err.message || err}`;
   logger.error(errMsg);
-  return new Err(errMsg, err.status || 500, err.type || 'UnknownErr');
+  throw new Err(errMsg, err.status || 500, err.type || 'UnknownErr');
 };
 
 export const warnInvalidData = (msg: string): void => {

@@ -1,4 +1,4 @@
-import { Res, Err } from '../contentful.types';
+import { Err } from '../contentful.types';
 import {
   config,
   timeoutSignal,
@@ -11,7 +11,7 @@ import {
 const createEntry = async <T>(
   endpoint: string,
   postData: object,
-): Promise<Res<T>> => {
+): Promise<T> => {
   try {
     const res = await fetch(buildApiUrl(endpoint), {
       method: 'POST',
@@ -26,7 +26,7 @@ const createEntry = async <T>(
     // Bad response
     if (!res.ok) {
       const errMsg = `API Error: ${res.status} - ${res.statusText}`;
-      return handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
+      throw handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
     }
 
     // Good response
@@ -35,8 +35,8 @@ const createEntry = async <T>(
 
     return data as T;
   } catch (err) {
-    if (err.name === 'AbortError') return handleTimeoutErr(err);
-    return handleUnknownErr(err);
+    if (err.name === 'AbortError') throw handleTimeoutErr(err);
+    throw handleUnknownErr(err);
   }
 };
 

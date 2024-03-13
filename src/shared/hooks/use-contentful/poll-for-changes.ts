@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-import logger from '@services/logger';
 import { Err } from '@services/contentful/contentful.types';
 
 /**
@@ -8,21 +6,21 @@ import { Err } from '@services/contentful/contentful.types';
  *
  * @param {PollForChangesOpts<T>} opts - The options object containing all necessary parameters.
  *   - serviceFn: A function returning a promise that fetches the data.
- *   - conditionCheck: A function that checks if the polled condition is met.
- *   - handleErr: A function to handle any errors that occur during polling.
- *   - setData: A React dispatch function to update the state with the fetched data.
+ *   - successFn: A function that checks if the polled condition is met.
+ *   - onSuccess: A function to do an operation once the condition is met
+ *   - onError: A function to handle any errors that occur during polling.
  *   - maxAttempts: (Optional) Maximum number of polling attempts. Default is 5.
  *   - pollInterval: (Optional) Time interval (in milliseconds) between polling attempts. Default is 3000 ms.
  *
  * @returns A cleanup function that clears the polling interval.
  */
 type PollForChangesOpts<T> = {
-  serviceFn: () => Promise<T[] | Err>;
-  conditionCheck: (data: T[]) => boolean;
-  handleErr: (err: Err) => void;
-  setData: Dispatch<SetStateAction<T[] | null>>;
   maxAttempts?: number;
   pollInterval?: number;
+  serviceFn: () => Promise<T[] | Err>;
+  successFn: (data: T[]) => boolean;
+  onSuccess: (data: T[]) => void;
+  onError: (err: Err) => void;
 };
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {
@@ -38,9 +36,9 @@ const pollForChanges = async <T extends { id: string }>(
 ) => {
   const {
     serviceFn,
-    conditionCheck,
-    handleErr,
-    setData,
+    successFn,
+    onSuccess,
+    onError,
     maxAttempts = 7,
     pollInterval = 5000,
   } = opts;
@@ -52,19 +50,19 @@ const pollForChanges = async <T extends { id: string }>(
       const res = await serviceFn();
 
       if (res instanceof Err) {
-        handleErr(res);
+        onError(res);
         return;
       }
 
       const data = res as T[];
 
-      if (conditionCheck(data) || attempts >= maxAttempts) {
+      if (successFn(data) || attempts >= maxAttempts) {
         clearInterval(interval);
-        setData(data);
+        onSuccess(data);
       }
     } catch (error) {
       clearInterval(interval);
-      handleErr(error);
+      onError(error);
     }
 
     attempts++;
