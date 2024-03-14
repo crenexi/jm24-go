@@ -4,6 +4,7 @@ import { Icon } from '@components/legos';
 import { ReturnHomeBlock } from '@components/action';
 import { Title } from '@components/display';
 import Wisher from './Wisher';
+import WishList from './WishList';
 import sy from './Wishes.scss';
 
 const Wishes: FC = () => {
@@ -25,6 +26,7 @@ const Wishes: FC = () => {
       </div>
       <div className={sy.main}>
         <Wisher />
+        <WishList />
       </div>
     </ReturnHomeBlock>
   );

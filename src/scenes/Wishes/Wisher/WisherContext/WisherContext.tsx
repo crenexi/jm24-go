@@ -1,9 +1,7 @@
 import { ReactNode, FC, createContext, useState } from 'react';
 import useContentful from '@hooks/use-contentful';
-
+import { Wish, NewWish } from '../../Wish.types';
 import {
-  Wish,
-  NewWish,
   WisherState,
   WisherError,
   WisherContextType,

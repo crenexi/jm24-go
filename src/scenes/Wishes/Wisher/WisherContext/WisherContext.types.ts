@@ -1,11 +1,4 @@
-import { ItemMeta } from '@hooks/use-contentful';
-
-export type NewWish = {
-  sender: string;
-  message: string;
-};
-
-export type Wish = NewWish & ItemMeta;
+import { NewWish } from '../../Wish.types';
 
 export type WisherError = null | {
   message: string;
