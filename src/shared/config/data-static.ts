@@ -9,6 +9,7 @@ const urls = {
 
 const wedActions: WedAction[] = [
   {
+    disabled: false,
     icon: 'message-heart',
     heading: 'Send Wishes',
     subtext: 'Words & advice for the couple.',
@@ -21,6 +22,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
+    disabled: true,
     icon: 'photo-film',
     heading: 'Share Media',
     subtext: 'Add pics/video from today!',
@@ -33,6 +35,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
+    disabled: false,
     icon: 'envelope-open-dollar',
     heading: 'Give Gift',
     subtext: 'Gift to our honeymoon.',
@@ -45,6 +48,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
+    disabled: true,
     icon: 'images-user',
     heading: 'Booth Pics',
     subtext: 'See Photo Booth gallery!',
@@ -58,6 +62,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
+    disabled: true,
     icon: 'check-to-slot',
     heading: 'Quiz Answers',
     subtext: 'Who Knows the Couple...',

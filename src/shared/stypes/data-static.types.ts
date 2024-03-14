@@ -5,6 +5,7 @@ export type WedAction = {
   heading: string;
   subtext: string;
   buttonProps: ButtonProps;
+  disabled: boolean;
 };
 
 export type QuizItem = {
