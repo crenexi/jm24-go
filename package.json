@@ -13,7 +13,6 @@
     "build": "webpack --config webpack.config.js --progress",
     "build:dev": "npm run lint && cross-env NODE_ENV=development BABEL_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production BABEL_ENV=production webpack --config webpack.config.js",
-    "deploy:assets": "./scripts/deploy-assets.sh",
     "stats": "npm run stats:create && npm run stats:analyze",
     "stats:create": "cross-env NODE_ENV=production BABEL_ENV=production webpack --config webpack.config.js --profile --json=dist/stats.json",
     "stats:analyze": "webpack-bundle-analyzer -p 4300 -s gzip dist/stats.json",

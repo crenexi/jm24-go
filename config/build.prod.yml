@@ -16,9 +16,6 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-
-      - echo Deploying assets from stage to prod...
-      - npm run deploy:assets -- prod
 artifacts:
   files:
     - '**/*'
