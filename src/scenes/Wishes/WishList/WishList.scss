@@ -55,7 +55,7 @@
 }
 
 .header_title {
-  flex: 1 1 50%;
+  flex: 1 1 0%;
 }
 
 .header_count {
@@ -111,20 +111,24 @@
 
 .wish_header {
   @include flexy(row, start, center);
+  flex-wrap: nowrap;
   font-size: 1.1rem;
 }
 
 .wish_sender {
   font-weight: 700;
+  line-height: 1em;
 }
 
 .wish_created {
+  min-width: fit-content;
   font-size: .9rem;
   margin-left: sp(sm2);
   opacity: .5;
 }
 
 .wish_message {
+  margin-top: sp(sm1);
   @include truncate-comment();
   margin-bottom: 1px;
   font-size: 1rem;
