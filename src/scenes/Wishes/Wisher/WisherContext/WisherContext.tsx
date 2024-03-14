@@ -54,9 +54,6 @@ export const WisherProvider: FC<ProviderProps> = ({ children }) => {
     setState((prevState) => ({ ...prevState, isSending: true }));
 
     try {
-      setError({ message: 'asldfads' });
-
-      /*
       const data = await listful.add(state.wish);
 
       if (data) {
@@ -75,7 +72,6 @@ export const WisherProvider: FC<ProviderProps> = ({ children }) => {
           isSending: false,
         }));
       }
-      */
     } catch (err) {
       let message = 'Failed to send the wish. Please try again.';
       if (err instanceof Error && err.message) message = err.message;
