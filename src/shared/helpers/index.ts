@@ -1,4 +1,5 @@
 import sourceAttributes from './misc/source-attributes';
+import relativeTime from './misc/relative-time';
 
 export {
   alphaNumeric,
@@ -13,4 +14,4 @@ export {
   userAgent,
 } from './helpers';
 
-export { sourceAttributes };
+export { sourceAttributes, relativeTime };

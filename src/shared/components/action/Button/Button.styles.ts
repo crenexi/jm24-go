@@ -3,9 +3,9 @@ import { svar } from '@helpers/helpers';
 
 type SxVariant = SxProps<Theme>;
 
-const coPrimaryBase = svar('co_primary_base');
 const coPrimaryDarker = svar('co_primary_darker');
-const coBrightDarker = svar('co_bright_darker');
+const coPrimaryBase = svar('co_primary_base');
+const coPrimaryLightest = svar('co_primary_lightest');
 const coDangerBase = svar('co_danger_base');
 const coDangerDarker = svar('co_danger_darker');
 const coSuccessBase = svar('co_success_base');
@@ -23,31 +23,32 @@ const gradDanger = `linear-gradient(135deg, ${coDangerDarker}, ${coDangerBase})`
 const gradSuccess = `linear-gradient(135deg, ${coSuccessDarker}, ${coSuccessBase})`;
 
 const defaults: SxVariant = {
-  color: coPrimaryBase,
-  background: '#DFE2ED',
-  borderColor: `rgba(55, 84, 148, 0.25)`,
-  hoverColor: 'rgba(107, 119, 146, 0.25)',
+  color: '#fff',
+  background: 'rgba(255, 255, 255, .07)',
+  borderColor: 'rgba(255, 255, 255, .14)',
+  hoverColor: 'rgba(255, 255, 255, .18)',
   active: {
     transform: 'translateY(1px)',
   },
   focus: {
-    borderColor: coPrimaryBase,
-    boxShadow: `inset 0 0 0 2px #f4f4f4`,
+    hoverColor: 'rgba(255, 255, 255, .3)',
+    boxShadow: `inset 0 0 0 2px #29252c`,
   },
   disabled: {
-    color: '#00000040',
-    borderColor: '#d9d9d9',
+    color: '#ffffff60 !important',
+    borderColor: '#514a56',
     textShadow: 'none',
     boxShadow: 'none',
   },
 };
 
 const variantDefault: SxVariant = {
-  color: defaults.color,
+  color: `${defaults.color} !important`,
   padding: `${spSm2} ${spSm4}`,
   backgroundColor: defaults.background,
   border: `2px solid ${defaults.borderColor}`,
   borderRadius: borderRadius1,
+  textTransform: 'uppercase',
   '&:hover': {
     color: defaults.color,
     backgroundColor: defaults.hoverColor,
@@ -66,16 +67,17 @@ const variantDefault: SxVariant = {
 
 const variantPrimary: SxVariant = {
   color: '#fff',
-  backgroundColor: coPrimaryBase,
-  border: `2px solid ${coPrimaryBase}`,
+  backgroundColor: '#705485',
+  border: '2px solid #705485',
   '&:hover': {
     color: '#fff',
-    backgroundColor: coBrightDarker,
-    borderColor: coBrightDarker,
+    backgroundColor: '#84639d',
+    borderColor: '#84639d',
     boxShadow: shadow3,
   },
   '&:focus': {
     ...defaults.focus,
+    borderColor: '#84639d',
     color: '#fff',
   },
   '&:active': {
@@ -84,26 +86,28 @@ const variantPrimary: SxVariant = {
   },
   '&.Mui-disabled': {
     ...defaults.disabled,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#483c51',
+    borderColor: '#483c51',
   },
 };
 
 const variantSecondary: SxVariant = {
-  color: defaults.color,
+  color: '#fff',
   backgroundColor: 'transparent',
-  border: `2px solid ${defaults.color}`,
+  border: `2px solid #705485`,
   '&:hover': {
     color: '#fff',
-    backgroundColor: coPrimaryBase,
-    borderColor: coPrimaryBase,
+    backgroundColor: '#705485',
+    borderColor: '#705485 !important',
     boxShadow: shadow3,
   },
   '&:active': {
     ...defaults.active,
   },
   '&:focus': {
-    color: defaults.color,
-    boxShadow: `inset 0 0 0 2px #fff, inset 0 0 0 4px ${defaults.color}`,
+    ...defaults.focus,
+    borderColor: '#705485',
+    color: '#fff',
   },
   '&:hover:focus': {
     color: '#fff',
@@ -117,7 +121,7 @@ const variantText: SxVariant = {
   borderRadius: '0',
   textDecoration: 'underline',
   '&:hover': {
-    color: coPrimaryBase,
+    color: '#8d6fa5',
     backgroundColor: 'transparent',
     border: 'none',
     boxShadow: 'none',
@@ -125,11 +129,11 @@ const variantText: SxVariant = {
   },
   '&:active': {
     ...defaults.active,
-    color: coPrimaryBase,
+    color: '#8d6fa5',
   },
   '&:focus': {
-    color: coPrimaryBase,
-    boxShadow: `inset 0 0 0 1px ${defaults.color}`,
+    color: '#8d6fa5',
+    boxShadow: `inset 0 0 0 1px #5c456e`,
     textDecoration: 'none',
   },
 };
@@ -147,6 +151,10 @@ const variantGhost: SxVariant = {
   '&:focus': {
     ...defaults.focus,
   },
+  '&.Mui-disabled': {
+    ...defaults.disabled,
+    borderColor: 'transparent',
+  },
 };
 
 const variantWhite: SxVariant = {
@@ -154,7 +162,7 @@ const variantWhite: SxVariant = {
   backgroundColor: 'transparent',
   border: `2px solid #fff`,
   '&:hover': {
-    color: defaults.color,
+    color: '#342b3a',
     backgroundColor: '#fff',
     boxShadow: shadow3,
   },

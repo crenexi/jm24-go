@@ -6,11 +6,13 @@ import sy from './LoadingBlock.scss';
 type LoadingBlockProps = {
   iconName?: string;
   padSize?: string;
+  speed?: number;
 };
 
 const LoadingBlock: FC<LoadingBlockProps> = ({
   iconName = 'spinner-third',
   padSize = 'md',
+  speed = 1,
 }) => {
   const sizeKeys = ['sm', 'md', 'lg'];
 
@@ -21,7 +23,7 @@ const LoadingBlock: FC<LoadingBlockProps> = ({
   }
 
   const sxIcon = {
-    animationDuration: '500ms',
+    animationDuration: `${500 * speed}ms`,
   };
 
   const cnEdge = classNames(sy.edge, {
@@ -32,7 +34,7 @@ const LoadingBlock: FC<LoadingBlockProps> = ({
 
   return (
     <div className={cnEdge} style={sxEdge}>
-      <Icon name={iconName} size="xl" style={sxIcon} spin />
+      <Icon name={iconName} size="2x" style={sxIcon} spin />
     </div>
   );
 };

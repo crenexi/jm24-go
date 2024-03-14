@@ -12,8 +12,8 @@
 // Artificial padding
 
 .xray {
-  background-color: co(neutral, n10);
-  border: 1px dashed co(neutral, n50);
+  background-color: co(neutral, n800);
+  border: 1px dashed co(neutral, n600);
 
   &:not(:first-child) {
     margin-top: sp(sm2);

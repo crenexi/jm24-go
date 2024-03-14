@@ -1,27 +1,21 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import contentfulService from '@services/contentful';
 import logger from '@services/logger';
 import { Err } from '@services/contentful/contentful.types';
+import { ItemMeta, NewItem, UseContentfulReturn } from './use-contentful.types';
 import pollForChanges from './poll-for-changes';
 
-import {
-  WithId,
-  ListfulAddFn,
-  ListfulRemoveFn,
-  UseContentfulReturn,
-} from './use-contentful.types';
-
-const useContentful = <T extends WithId>(
-  listEndpoint: string,
+const useContentful = <T extends ItemMeta>(
+  endpoint: string,
 ): UseContentfulReturn<T> => {
   const service = contentfulService<T>();
+  const queryClient = useQueryClient();
 
-  // Hook state
-  const [data, setData] = useState<T[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  // Custom error state
+  const [error, setError] = useState<null | { message: string }>(null);
 
-  // Error handler
+  // Custom error handling
   const handleErr = (err: Err) => {
     switch (err.type) {
       case 'NetworkErr':
@@ -29,116 +23,116 @@ const useContentful = <T extends WithId>(
         break;
       case 'APIErr':
         logger.error(err);
-        setError(err.message);
+        setError({ message: err.message });
         break;
       case 'UnknownErr':
         logger.error(err);
-        setError(err.message);
+        setError({ message: err.message });
         break;
       default:
     }
   };
 
-  // Loading state
-  const showUpdating = () => {
-    setIsLoading(true);
-    setError('');
+  // Fetch and manage data
+  const { data, isLoading } = useQuery<T[], Error>(
+    [endpoint],
+    () => service.read(endpoint),
+    {
+      staleTime: 5 * 60 * 1000, // freshen data in 5m
+      cacheTime: 15 * 60 * 1000, // garbage unused data in 15m
+      refetchOnWindowFocus: true, // refetch on window focus
+      onError: (err) => handleErr(err as Err),
+    },
+  );
+
+  // Helper for polling
+  const startPolling = (successFn: (fetched: T[]) => boolean) => {
+    pollForChanges<T>({
+      successFn,
+      serviceFn: () => {
+        return service.read(endpoint);
+      },
+      onSuccess: () => {
+        return queryClient.invalidateQueries([endpoint]);
+      },
+      onError: (err) => {
+        setError({ message: err.message });
+      },
+    });
   };
 
-  // Add an item locally and create it
-  const listfulAdd: ListfulAddFn<T> = useCallback(async (item) => {
-    showUpdating();
+  // Mutations: add item to data
+  const createFn = (newItem: NewItem<T>) => service.create(endpoint, newItem);
+  const addMutation = useMutation(createFn, {
+    onMutate: async (newItem: NewItem<T>) => {
+      // Prevent ongoing fetches and save items
+      await queryClient.cancelQueries([endpoint]);
+      const previousItems = queryClient.getQueryData<T[]>([endpoint]) ?? [];
 
-    try {
-      const res = await service.create(listEndpoint, item);
+      const tempItem = {
+        ...newItem,
+        id: Date.now().toString(),
+        createdAt: new Date().toISOString(),
+        optimistic: true,
+      } as T;
 
-      if (res instanceof Err) {
-        handleErr(res);
-        return false;
+      // Optimistically update data and return previous
+      queryClient.setQueryData<T[]>([endpoint], (old = []) => [
+        ...old,
+        tempItem,
+      ]);
+      return { previousItems };
+    },
+    onError: (err, newItem, context: any) => {
+      if (context?.previousItems) {
+        queryClient.setQueryData([endpoint], context.previousItems);
       }
-
-      // Use new item response to add to local data
-      const createdItem = res as T;
-      setData((prevData) => [...(prevData ?? []), createdItem]);
-
-      const hasId = ({ id }: { id: string }) => id === createdItem.id;
-
-      pollForChanges({
-        serviceFn: () => service.read(listEndpoint),
-        conditionCheck: (fetched: T[]) => fetched.some(hasId),
-        handleErr,
-        setData,
+    },
+    onSuccess: (resData) => {
+      if (!resData?.id) logger.warn('No ID was returned from new post');
+    },
+    onSettled: (resData) => {
+      // Poller: checks to see when the new item is included in Contentful
+      startPolling((fetched: T[]) => {
+        return fetched.some((item) => item.id === (resData as T).id);
       });
-    } catch (err) {
-      handleErr(err);
-    } finally {
-      setIsLoading(false);
-      return true;
-    }
-  }, []);
+    },
+  });
 
-  // Remove an idea locally and delete it
-  const listfulRemove: ListfulRemoveFn = useCallback(async (itemId) => {
-    showUpdating();
+  // Mutation: remove item from data
+  const deleteFn = (id: string) => service.delete(`${endpoint}/${id}`);
+  const removeMutation = useMutation(deleteFn, {
+    onMutate: async (id: string) => {
+      // Prevent ongoing fetches and save items
+      await queryClient.cancelQueries([endpoint]);
+      const previousItems = queryClient.getQueryData<T[]>([endpoint]) ?? [];
 
-    try {
-      const res = await service.delete(`${listEndpoint}/${itemId}`);
-
-      if (res instanceof Err) {
-        handleErr(res);
-        return false;
-      }
-
-      // Use delete confirmation to remove from local data
-      setData((prevData) =>
-        prevData ? prevData.filter(({ id }) => id !== itemId) : null,
-      );
-
-      const hasId = ({ id }: { id: string }) => id === itemId;
-
-      pollForChanges({
-        serviceFn: () => service.read(listEndpoint),
-        conditionCheck: (fetched: T[]) => !fetched.some(hasId),
-        handleErr,
-        setData,
+      // Optimistically update data and return previous
+      queryClient.setQueryData<T[]>([endpoint], (old = []) => {
+        return old.filter((item) => item.id !== id);
       });
-    } catch (err) {
-      handleErr(err);
-    } finally {
-      setIsLoading(false);
-      return true;
-    }
-  }, []);
 
-  // Fetch collection data
-  const fetchData = useCallback(async () => {
-    showUpdating();
-
-    try {
-      const res = await service.read(listEndpoint);
-
-      if (res instanceof Err) {
-        handleErr(res);
-        return false;
+      return { previousItems, id };
+    },
+    onError: (err, context: any) => {
+      if (context?.previousItems) {
+        queryClient.setQueryData([endpoint], context.previousItems);
       }
-
-      // Fetched array
-      setData(res as T[]);
-    } catch (err) {
-      handleErr(err);
-    } finally {
-      setIsLoading(false);
-      return true;
-    }
-  }, [listEndpoint]);
-
-  // Fetch effect
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    },
+    onSettled: (resData, error, variables, context) => {
+      // Poller: checks to see when item is removed in Contentful
+      startPolling((fetched: T[]) => {
+        return !fetched.some((item) => item.id === context?.id);
+      });
+    },
+  });
 
   // Hook return
-  const listful = { add: listfulAdd, remove: listfulRemove };
+  const listful = {
+    add: (item: NewItem<T>) => addMutation.mutateAsync(item),
+    remove: (id: string) => removeMutation.mutate(id),
+  };
+
   return { data, isLoading, error, listful };
 };
 

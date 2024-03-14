@@ -1,4 +1,4 @@
-import { Res, Err } from '../contentful.types';
+import { Err } from '../contentful.types';
 import {
   config,
   timeoutSignal,
@@ -8,7 +8,7 @@ import {
   buildApiUrl,
 } from '../contentful-helpers';
 
-const deleteEntry = async <T>(endpoint: string): Promise<Res<T>> => {
+const deleteEntry = async <T>(endpoint: string): Promise<T> => {
   try {
     const res = await fetch(buildApiUrl(endpoint), {
       method: 'DELETE',
@@ -21,7 +21,7 @@ const deleteEntry = async <T>(endpoint: string): Promise<Res<T>> => {
     // Bad response
     if (!res.ok) {
       const errMsg = `API Error: ${res.status} - ${res.statusText}`;
-      return handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
+      throw handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
     }
 
     // Good response
@@ -30,8 +30,8 @@ const deleteEntry = async <T>(endpoint: string): Promise<Res<T>> => {
 
     return data as T;
   } catch (err) {
-    if (err.name === 'AbortError') return handleTimeoutErr(err);
-    return handleUnknownErr(err);
+    if (err.name === 'AbortError') throw handleTimeoutErr(err);
+    throw handleUnknownErr(err);
   }
 };
 

@@ -1,6 +1,19 @@
-import { Dispatch, SetStateAction } from 'react';
-import logger from '@services/logger';
 import { Err } from '@services/contentful/contentful.types';
+
+type PollForChangesOpts<T> = {
+  maxAttempts?: number;
+  pollInterval?: number;
+  serviceFn: () => Promise<T[] | Err>;
+  successFn: (data: T[]) => boolean;
+  onSuccess: (data: T[]) => void;
+  onError: (err: Err) => void;
+};
+
+type RetryWithBackoff = (
+  retryFn: () => void,
+  maxAttempts: number,
+  attempt: number,
+) => void;
 
 /**
  * `pollForChanges` is an asynchronous utility function for polling data changes.
@@ -8,72 +21,76 @@ import { Err } from '@services/contentful/contentful.types';
  *
  * @param {PollForChangesOpts<T>} opts - The options object containing all necessary parameters.
  *   - serviceFn: A function returning a promise that fetches the data.
- *   - conditionCheck: A function that checks if the polled condition is met.
- *   - handleErr: A function to handle any errors that occur during polling.
- *   - setData: A React dispatch function to update the state with the fetched data.
+ *   - successFn: A function that checks if the polled condition is met.
+ *   - onSuccess: A function to do an operation once the condition is met
+ *   - onError: A function to handle any errors that occur during polling.
  *   - maxAttempts: (Optional) Maximum number of polling attempts. Default is 5.
  *   - pollInterval: (Optional) Time interval (in milliseconds) between polling attempts. Default is 3000 ms.
  *
  * @returns A cleanup function that clears the polling interval.
  */
-type PollForChangesOpts<T> = {
-  serviceFn: () => Promise<T[] | Err>;
-  conditionCheck: (data: T[]) => boolean;
-  handleErr: (err: Err) => void;
-  setData: Dispatch<SetStateAction<T[] | null>>;
-  maxAttempts?: number;
-  pollInterval?: number;
-};
-
-const debounce = (func: (...args: any[]) => void, delay: number) => {
-  let inDebounce: ReturnType<typeof setTimeout>;
-  return function (...args: any[]) {
-    clearTimeout(inDebounce);
-    inDebounce = setTimeout(() => func(...args), delay);
-  };
-};
-
 const pollForChanges = async <T extends { id: string }>(
   opts: PollForChangesOpts<T>,
 ) => {
   const {
     serviceFn,
-    conditionCheck,
-    handleErr,
-    setData,
+    successFn,
+    onSuccess,
+    onError,
     maxAttempts = 7,
     pollInterval = 5000,
   } = opts;
 
   let attempts = 0;
 
-  const poll = async () => {
-    try {
-      const res = await serviceFn();
-
-      if (res instanceof Err) {
-        handleErr(res);
-        return;
-      }
-
-      const data = res as T[];
-
-      if (conditionCheck(data) || attempts >= maxAttempts) {
-        clearInterval(interval);
-        setData(data);
-      }
-    } catch (error) {
-      clearInterval(interval);
-      handleErr(error);
-    }
-
-    attempts++;
+  const retryWithBackoff: RetryWithBackoff = (
+    retryFn,
+    maxAttempts,
+    attempt = 1,
+  ) => {
+    // Exponential backoff delay
+    const retryDelay = Math.pow(2, attempt) * 1000;
+    setTimeout(retryFn, retryDelay);
   };
 
-  const debouncedPoll = debounce(poll, pollInterval);
-  const interval = setInterval(debouncedPoll, pollInterval);
+  const executePoll = async () => {
+    attempts++;
 
-  return () => clearInterval(interval);
+    try {
+      const res = await serviceFn();
+      const data = res as T[];
+
+      if (successFn(data)) {
+        clearInterval(intervalId);
+        onSuccess(data);
+        return;
+      }
+    } catch (error) {
+      if (error instanceof Err) {
+        // Handle 429 Too Many Requests specifically
+        if (error.status === 429 && attempts < maxAttempts) {
+          console.log(`Retrying after attempt ${attempts} due to 429 error.`);
+          retryWithBackoff(executePoll, maxAttempts, attempts);
+          return;
+        }
+      }
+      // Handle all other errors
+      clearInterval(intervalId);
+      onError(error);
+      return;
+    }
+
+    if (attempts >= maxAttempts) {
+      clearInterval(intervalId);
+    }
+  };
+
+  // Directly execute the first poll immediately, then set the interval
+  executePoll();
+  const intervalId = setInterval(executePoll, pollInterval);
+
+  // Return a cleanup function
+  return () => clearInterval(intervalId);
 };
 
 export default pollForChanges;

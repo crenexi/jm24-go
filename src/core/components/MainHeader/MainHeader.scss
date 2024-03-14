@@ -1,34 +1,48 @@
 @use '@sutils' as *;
 
-.edge {
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
+.gap, .header, .header_main {
+  height: $header-height_m1;
 }
 
 .header {
-  height: $header-height_m1;
-  padding: sp(sm5);
-  color: co(neutral, n50);
+  @include position(fixed, 0 0 null 0);
+  z-index: z-index(header);
+  background-color: co(background, lighter);
+  box-shadow: shadow(s1);
+  color: #fff;
 }
 
-// Wide header only
-@include breakpoint('d1+') {
-  .gap, .header {
-    height: $header-height_d1;
-  }
+.header_main {
+  width: 100%;
+  max-width: $header-max-width;
+  margin: 0 auto;
+  padding: 0 sp(sm5);
+  @include flexy(row, start, center);
+}
 
-  .header {
-    position: fixed;
-    z-index: z-index(header);
-    @include flexy(row, start, center);
-    width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-  }
+.header_start, .header_end, .alpacas {
+  width: 3rem;
+}
 
-  .main {
-    width: 100%;
-    max-width: $header-max-width;
-    margin: 0 auto;
-  }
+.header_start {
+  @include flexy(column, center, center);
+}
+
+.header_center {
+  flex: auto;
+  @include flexy(column, center, center);
+  font-family: font-family('primary');
+  font-size: 1.8rem;
+  color: co(bright, lightest);
+
+}
+
+.logo {
+  cursor: pointer;
+  @include size(4rem);
+  @include zoom('in', 1, 1, both);
+}
+
+.header_end {
+  padding: sp(sm1);
 }

@@ -5,6 +5,7 @@ const defaults: AppSettings = {
   theme: 'light',
   language: 'en',
   logLevel: 'info',
+  splashDuration: 2000,
   debug: false,
 };
 

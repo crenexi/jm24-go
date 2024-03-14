@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import DataStaticContext from '@contexts/DataStaticContext';
 
-const useDataFirebase = () => useContext(DataStaticContext);
+const useDataStatic = () => useContext(DataStaticContext);
 
-export default useDataFirebase;
+export default useDataStatic;

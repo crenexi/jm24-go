@@ -1,4 +1,4 @@
-import { Res, Err } from '../contentful.types';
+import { Err } from '../contentful.types';
 import {
   config,
   timeoutSignal,
@@ -6,7 +6,7 @@ import {
   handleUnknownErr,
 } from '../contentful-helpers';
 
-const readEntries = async <T>(endpoint: string): Promise<Res<T[]>> => {
+const readEntries = async <T>(endpoint: string): Promise<T[]> => {
   const urlEndpoint = `${config.apiBaseUrl}/${endpoint}`;
 
   try {
@@ -19,7 +19,7 @@ const readEntries = async <T>(endpoint: string): Promise<Res<T[]>> => {
     // Bad response
     if (!res.ok) {
       const errMsg = `API Error: ${res.status} - ${res.statusText}`;
-      return handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
+      throw handleUnknownErr(new Err(errMsg, res.status, 'APIErr'));
     }
 
     // Good response
@@ -27,8 +27,8 @@ const readEntries = async <T>(endpoint: string): Promise<Res<T[]>> => {
 
     return data;
   } catch (err) {
-    if (err.name === 'AbortError') return handleTimeoutErr(err);
-    return handleUnknownErr(err);
+    if (err.name === 'AbortError') throw handleTimeoutErr(err);
+    throw handleUnknownErr(err);
   }
 };
 
