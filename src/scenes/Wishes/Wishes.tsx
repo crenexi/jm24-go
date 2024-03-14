@@ -3,7 +3,6 @@ import { assetsUrl } from '@src/shared/constants';
 import { Icon } from '@components/legos';
 import { ReturnHomeBlock } from '@components/action';
 import { Title } from '@components/display';
-import { WisherProvider } from './Wisher/WisherContext';
 import Wisher from './Wisher';
 import sy from './Wishes.scss';
 
@@ -25,9 +24,7 @@ const Wishes: FC = () => {
         </div>
       </div>
       <div className={sy.main}>
-        <WisherProvider>
-          <Wisher />
-        </WisherProvider>
+        <Wisher />
       </div>
     </ReturnHomeBlock>
   );

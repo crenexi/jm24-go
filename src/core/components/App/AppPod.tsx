@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material';
 import { SettingsProvider } from '@contexts/SettingsContext';
 import { DataStaticProvider } from '@contexts/DataStaticContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { fontAwesome, materialUI } from '@core/libraries';
 
 // Base styles (import before App)
@@ -26,6 +27,9 @@ const AppPod = () => {
   // Initialize libraries
   fontAwesome.buildLibrary();
 
+  // React Query
+  const queryClient = new QueryClient();
+
   // Splash state
   const [isSplash, setIsSplash] = useState<boolean>(true);
 
@@ -45,7 +49,9 @@ const AppPod = () => {
     <SettingsProvider value={appSettings}>
       <DataStaticProvider value={dataStatic}>
         <ThemeProvider theme={theme}>
-          <App isSplash={isSplash} />
+          <QueryClientProvider client={queryClient}>
+            <App isSplash={isSplash} />
+          </QueryClientProvider>
         </ThemeProvider>
       </DataStaticProvider>
     </SettingsProvider>

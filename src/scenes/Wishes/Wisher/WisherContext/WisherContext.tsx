@@ -1,32 +1,13 @@
 import { ReactNode, FC, createContext, useState } from 'react';
 import useContentful from '@hooks/use-contentful';
 
-export type Wish = {
-  id: string;
-  sender: string;
-  message: string;
-};
-
-export type NewWish = Omit<Wish, 'id'>;
-
-export type WisherError = null | {
-  message: string;
-};
-
-export type WisherState = {
-  wish: NewWish;
-  isValid: boolean;
-  isSending: boolean;
-  isSuccess: boolean;
-};
-
-export type ContextType = {
-  error: WisherError;
-  state: WisherState;
-  reset: () => void;
-  handleChange: (field: keyof NewWish, value: string) => void;
-  handleSend: () => void;
-};
+import {
+  Wish,
+  NewWish,
+  WisherState,
+  WisherError,
+  WisherContextType,
+} from './WisherContext.types';
 
 // Default wisher state
 const defaultState: WisherState = {
@@ -45,7 +26,7 @@ const isValidWish = (wish: NewWish) => {
 };
 
 // Wisher Context
-const WisherContext = createContext<ContextType | undefined>(undefined);
+const WisherContext = createContext<WisherContextType | undefined>(undefined);
 
 // Wisher Provider
 type ProviderProps = { children: ReactNode };
@@ -72,9 +53,9 @@ export const WisherProvider: FC<ProviderProps> = ({ children }) => {
     setState((prevState) => ({ ...prevState, isSending: true }));
 
     try {
-      const success = await listful.add(state.wish);
+      const data = await listful.add(state.wish);
 
-      if (success) {
+      if (data) {
         setState((prevState) => ({
           ...prevState,
           isSending: false,
@@ -100,15 +81,6 @@ export const WisherProvider: FC<ProviderProps> = ({ children }) => {
         isSending: false,
       }));
     }
-
-    // Temporary - simulate a sending process
-    // setTimeout(() => {
-    //   setState((prevState) => ({
-    //     ...prevState,
-    //     isSending: false,
-    //     isSuccess: true,
-    //   }));
-    // }, 2000);
   };
 
   return (

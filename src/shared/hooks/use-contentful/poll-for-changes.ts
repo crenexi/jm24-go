@@ -1,5 +1,20 @@
 import { Err } from '@services/contentful/contentful.types';
 
+type PollForChangesOpts<T> = {
+  maxAttempts?: number;
+  pollInterval?: number;
+  serviceFn: () => Promise<T[] | Err>;
+  successFn: (data: T[]) => boolean;
+  onSuccess: (data: T[]) => void;
+  onError: (err: Err) => void;
+};
+
+type RetryWithBackoff = (
+  retryFn: () => void,
+  maxAttempts: number,
+  attempt: number,
+) => void;
+
 /**
  * `pollForChanges` is an asynchronous utility function for polling data changes.
  * It repeatedly executes a provided service function until a specified condition is met or a maximum number of attempts is reached.
@@ -14,23 +29,6 @@ import { Err } from '@services/contentful/contentful.types';
  *
  * @returns A cleanup function that clears the polling interval.
  */
-type PollForChangesOpts<T> = {
-  maxAttempts?: number;
-  pollInterval?: number;
-  serviceFn: () => Promise<T[] | Err>;
-  successFn: (data: T[]) => boolean;
-  onSuccess: (data: T[]) => void;
-  onError: (err: Err) => void;
-};
-
-const debounce = (func: (...args: any[]) => void, delay: number) => {
-  let inDebounce: ReturnType<typeof setTimeout>;
-  return function (...args: any[]) {
-    clearTimeout(inDebounce);
-    inDebounce = setTimeout(() => func(...args), delay);
-  };
-};
-
 const pollForChanges = async <T extends { id: string }>(
   opts: PollForChangesOpts<T>,
 ) => {
@@ -45,33 +43,54 @@ const pollForChanges = async <T extends { id: string }>(
 
   let attempts = 0;
 
-  const poll = async () => {
-    try {
-      const res = await serviceFn();
-
-      if (res instanceof Err) {
-        onError(res);
-        return;
-      }
-
-      const data = res as T[];
-
-      if (successFn(data) || attempts >= maxAttempts) {
-        clearInterval(interval);
-        onSuccess(data);
-      }
-    } catch (error) {
-      clearInterval(interval);
-      onError(error);
-    }
-
-    attempts++;
+  const retryWithBackoff: RetryWithBackoff = (
+    retryFn,
+    maxAttempts,
+    attempt = 1,
+  ) => {
+    // Exponential backoff delay
+    const retryDelay = Math.pow(2, attempt) * 1000;
+    setTimeout(retryFn, retryDelay);
   };
 
-  const debouncedPoll = debounce(poll, pollInterval);
-  const interval = setInterval(debouncedPoll, pollInterval);
+  const executePoll = async () => {
+    attempts++;
 
-  return () => clearInterval(interval);
+    try {
+      const res = await serviceFn();
+      const data = res as T[];
+
+      if (successFn(data)) {
+        clearInterval(intervalId);
+        onSuccess(data);
+        return;
+      }
+    } catch (error) {
+      if (error instanceof Err) {
+        // Handle 429 Too Many Requests specifically
+        if (error.status === 429 && attempts < maxAttempts) {
+          console.log(`Retrying after attempt ${attempts} due to 429 error.`);
+          retryWithBackoff(executePoll, maxAttempts, attempts);
+          return;
+        }
+      }
+      // Handle all other errors
+      clearInterval(intervalId);
+      onError(error);
+      return;
+    }
+
+    if (attempts >= maxAttempts) {
+      clearInterval(intervalId);
+    }
+  };
+
+  // Directly execute the first poll immediately, then set the interval
+  executePoll();
+  const intervalId = setInterval(executePoll, pollInterval);
+
+  // Return a cleanup function
+  return () => clearInterval(intervalId);
 };
 
 export default pollForChanges;

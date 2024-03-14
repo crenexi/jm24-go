@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react';
 import { Button } from '@components/action';
-import useWisher from './use-wisher';
+import { useWisher } from './WisherContext';
 import WisherForm from './WisherForm';
 import SendButton from './SendButton';
 import SuccessMessage from './SuccessMessage';

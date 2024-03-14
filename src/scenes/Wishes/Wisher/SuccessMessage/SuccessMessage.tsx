@@ -1,7 +1,7 @@
 import { FC, Fragment } from 'react';
 import { Button } from '@components/action';
 import { assetsUrl } from '@src/shared/constants';
-import useWisher from '../use-wisher';
+import { useWisher } from '../WisherContext';
 import sy from './SuccessMessage.scss';
 
 const SuccessMessage: FC = () => {

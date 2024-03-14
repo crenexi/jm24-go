@@ -1,6 +1,6 @@
 import { FC, ChangeEvent } from 'react';
 import { TextField } from '@mui/material';
-import useWisher from '../use-wisher';
+import { useWisher } from '../WisherContext';
 import sy from './WisherForm.scss';
 
 const WisherForm: FC = () => {

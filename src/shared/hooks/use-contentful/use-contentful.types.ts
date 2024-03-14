@@ -1,14 +1,17 @@
-export type WithId = { id: string };
-
-export type ListfulAddFn<T> = (item: T) => void;
-export type ListfulRemoveFn = (itemId: string) => void;
-
-export type Listful<T extends WithId> = {
-  add: ListfulAddFn<T>;
-  remove: ListfulRemoveFn;
+export type ItemMeta = {
+  id: string;
+  createdAt: string;
+  optimistic?: boolean;
 };
 
-export type UseContentfulReturn<T extends WithId> = {
+export type NewItem<T> = Omit<T, 'id' | 'createdAt'>;
+
+export type Listful<T> = {
+  add: (item: NewItem<T>) => Promise<T>;
+  remove: (id: string) => void;
+};
+
+export type UseContentfulReturn<T extends ItemMeta> = {
   data: T[] | undefined;
   listful: Listful<T>;
   isLoading: boolean;

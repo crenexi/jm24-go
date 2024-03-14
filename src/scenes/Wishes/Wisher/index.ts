@@ -1,3 +1,3 @@
-import Wisher from './Wisher';
+import WisherPod from './WisherPod';
 
-export default Wisher;
+export default WisherPod;

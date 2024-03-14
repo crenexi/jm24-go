@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Icon } from '@components/legos';
 import { Button } from '@components/action';
 import { Loading } from '@components/feedback';
-import useWisher from '../use-wisher';
+import { useWisher } from '../WisherContext';
 import sy from './SendButton.scss';
 
 const SendButton: FC = () => {

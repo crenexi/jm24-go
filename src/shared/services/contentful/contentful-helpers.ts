@@ -33,7 +33,7 @@ export const handleTimeoutErr: HandleTimeoutErrFn = (err) => {
 };
 
 export const handleUnknownErr: HandleUnknownErrFn = (err) => {
-  const errMsg = `Unexpected error: ${err.message || err}`;
+  const errMsg = err.message || String(err);
   logger.error(errMsg);
   throw new Err(errMsg, err.status || 500, err.type || 'UnknownErr');
 };
