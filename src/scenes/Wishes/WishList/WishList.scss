@@ -107,23 +107,29 @@
 
 .wish_main {
   padding-right: sp(sm2);
+  overflow: hidden;
 }
 
 .wish_header {
+  width: 100%;
   @include flexy(row, start, center);
   flex-wrap: nowrap;
   font-size: 1.1rem;
 }
 
 .wish_sender {
+  flex: 1 1 auto;
   font-weight: 700;
   line-height: 1em;
+  @include truncate();
 }
 
 .wish_created {
+  flex: 0 0 content;
   min-width: fit-content;
   font-size: .9rem;
   margin-left: sp(sm2);
+  white-space: nowrap;
   opacity: .5;
 }
 
