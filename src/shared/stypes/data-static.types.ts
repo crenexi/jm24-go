@@ -37,7 +37,6 @@ type DataStatic = {
       text2: string;
     };
     dropbox: MediaOption;
-    airdrop: MediaOption;
     email: MediaOption;
   };
   collage5?: string[];

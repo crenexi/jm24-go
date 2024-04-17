@@ -4,7 +4,7 @@ import { assetsUrl } from '../constants';
 // prettier-ignore
 const urls = {
   urlDropboxShare: 'https://www.dropbox.com/request/PU5A2HyKCLsrF5qautpb',
-  urlSimpleBoothGallery: 'https://www.google.com',
+  urlSimpleBoothGallery: 'https://www.simplebooth.com/profiles/blume',
 };
 
 const wedActions: WedAction[] = [
@@ -22,7 +22,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
-    disabled: true,
+    disabled: false,
     icon: 'photo-film',
     heading: 'Share Media',
     subtext: 'Add pics/video from today!',
@@ -48,7 +48,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
-    disabled: true,
+    disabled: false,
     icon: 'images-user',
     heading: 'Booth Pics',
     subtext: 'See Photo Booth gallery!',
@@ -62,7 +62,7 @@ const wedActions: WedAction[] = [
     },
   },
   {
-    disabled: true,
+    disabled: false,
     icon: 'check-to-slot',
     heading: 'Quiz Answers',
     subtext: 'Who Knows the Couple...',
@@ -159,8 +159,8 @@ const dataStatic: DataStatic = {
     urlDropboxShare: urls.urlDropboxShare,
     wifiWarn: `AT THE VENUE, amid poor mobile signal, connect to WIFI! Info at Sign-In table. Or share later!`,
     intro: {
-      text1: 'We invite you to share your captured moments from our wedding day. We appreciate your help, especially with no videographer!',
-      text2: 'Dropbox (preferred), AirDrop, or Email',
+      text1: 'We invite you to share your captured moments from our wedding day! We appreciate it!',
+      text2: 'Dropbox (preferred), or Email',
     },
     dropbox: {
       pretext: 'Upload directly to our secure Dropbox folder. You can upload multiple files at once. Thank you!',
@@ -180,46 +180,6 @@ const dataStatic: DataStatic = {
           heading: 'Upload',
           text: 'Hang tight and complete!'
         },
-      ],
-    },
-    airdrop: {
-      pretext: `If you're Apple-savvy, feel free to AirDrop vids/pics to the Photo Booth iPad before leaving.`,
-      steps: [
-        {
-          icon: 'tablet-screen-button',
-          heading: 'Go to iPad',
-          text: 'Go to the Photo Booth iPad to enable AirDrop. Stay close, as transfers are best within 30ft.',
-        },
-        {
-          icon: 'signal-stream',
-          heading: 'Enable iPad AirDrop',
-          text: 'Swipe down from the top-right to open the Control Center. Press and hold the network section (with the airplane). Tap AirDrop and select "Everyone" to enable',
-        },
-        {
-          icon: 'photo-film',
-          heading: 'Select Media',
-          text: 'Open iPhone Photos. Select wedding vids/pics to share.',
-        },
-        {
-          icon: 'arrow-up-from-square',
-          heading: 'Use AirDrop',
-          text: `Tap Share > AirDrop. Select 'M&J Wedding Booth iPad' to send. If you can't find it, ensure both devices have AirDrop and Bluetooth enabled and aren't in Airplane Mode.`,
-        },
-        {
-          icon: 'tablet-screen-button',
-          heading: 'Accept Transfer',
-          text: 'On the iPad, accept the AirDrop transfer.',
-        },
-        {
-          icon: 'right-left',
-          heading: 'Complete Transfer',
-          text: `You'll see a 'Sent' confirmation once complete.`
-        },
-        {
-          icon: 'camera-web',
-          heading: 'Photo Booth',
-          text: `When done, leave the iPad on 'Simple Booth' for guests.`,
-        }
       ],
     },
     email: {
