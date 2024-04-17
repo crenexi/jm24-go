@@ -41,6 +41,7 @@ const MediaOption: FC<MediaOptionProps> = (props) => {
   const handleToggle = () => {
     if (toggle.isOpen) return setToggle(toggleClosed);
     setToggle(toggleOpen);
+    return () => {};
   };
 
   return (

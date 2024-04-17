@@ -2,7 +2,6 @@ import { FC } from 'react';
 import logger from '@services/logger';
 import { relativeTime } from '@helpers/index';
 import useContentful from '@hooks/use-contentful';
-import { Icon } from '@components/legos';
 import { LoadingBlock } from '@components/feedback';
 import { Wish, FeedWish } from '../Wish.types';
 import sy from './WishList.scss';

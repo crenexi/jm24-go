@@ -1,1 +1,1 @@
-export { default } from './MainHeaderPod';
+export { default } from './MainHeader';

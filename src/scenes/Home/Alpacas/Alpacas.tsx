@@ -10,7 +10,7 @@ const Alpacas: FC = () => {
       <div className={sy.main}>
         <div className={sy.fade} />
         <div className={sy.field} />
-        <img className={sy.alpaca} src={urlAlpaca} />
+        <img className={sy.alpaca} src={urlAlpaca} alt="Alpacas" />
       </div>
     </div>
   );
