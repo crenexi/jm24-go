@@ -168,17 +168,17 @@ const dataStatic: DataStatic = {
         {
           icon: 'folder-image',
           heading: 'Access Folder',
-          text: 'Click on the link above'
+          text: 'Click on the link above',
         },
         {
           icon: 'photo-film',
           heading: 'Choose Files',
-          text: 'Select your wedding vids/pics'
+          text: 'Select your wedding vids/pics',
         },
         {
           icon: 'cloud-arrow-up',
           heading: 'Upload',
-          text: 'Hang tight and complete!'
+          text: 'Hang tight and complete!',
         },
       ],
     },
@@ -189,9 +189,9 @@ const dataStatic: DataStatic = {
           icon: 'envelope',
           heading: 'Email us attachments at:',
           text: 'jamesmichelle2024@gmail.com',
-        }
-      ]
-    }
+        },
+      ],
+    },
   },
 };
 

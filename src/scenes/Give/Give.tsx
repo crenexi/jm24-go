@@ -22,8 +22,8 @@ const Give: FC = () => {
         <div className={sy.titles}>
           <Title title="Give" subtitle="To our honeymoon fund" />
           <p>
-            Thanks for your gift interest! We're accepting the following ways to
-            give towards our London honeymoon!
+            Thanks for your gift interest! We&apos;re accepting the following
+            ways to give towards our London honeymoon!
           </p>
         </div>
         <div className={sy.waysList}>

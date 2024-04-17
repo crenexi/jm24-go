@@ -41,6 +41,7 @@ const pollForChanges = async <T extends { id: string }>(
     pollInterval = 5000,
   } = opts;
 
+  let intervalId: NodeJS.Timeout | undefined;
   let attempts = 0;
 
   const retryWithBackoff: RetryWithBackoff = (
@@ -49,12 +50,12 @@ const pollForChanges = async <T extends { id: string }>(
     attempt = 1,
   ) => {
     // Exponential backoff delay
-    const retryDelay = Math.pow(2, attempt) * 1000;
+    const retryDelay = 2 ** attempt * 1000;
     setTimeout(retryFn, retryDelay);
   };
 
   const executePoll = async () => {
-    attempts++;
+    attempts += 1;
 
     try {
       const res = await serviceFn();
@@ -69,6 +70,7 @@ const pollForChanges = async <T extends { id: string }>(
       if (error instanceof Err) {
         // Handle 429 Too Many Requests specifically
         if (error.status === 429 && attempts < maxAttempts) {
+          // eslint-disable-next-line no-console
           console.log(`Retrying after attempt ${attempts} due to 429 error.`);
           retryWithBackoff(executePoll, maxAttempts, attempts);
           return;
@@ -87,7 +89,7 @@ const pollForChanges = async <T extends { id: string }>(
 
   // Directly execute the first poll immediately, then set the interval
   executePoll();
-  const intervalId = setInterval(executePoll, pollInterval);
+  intervalId = setInterval(executePoll, pollInterval);
 
   // Return a cleanup function
   return () => clearInterval(intervalId);

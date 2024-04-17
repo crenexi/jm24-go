@@ -16,8 +16,11 @@ const WedActions: FC<WedActionsProps> = (props) => {
   // Loading
   if (!isReady) return null;
 
-  const cnItemMain = (disabled: boolean) =>
-    !disabled ? sy.item_main : classNames(sy.item_main, sy.item_main__disabled);
+  const cnItemMain = (disabled: boolean) => {
+    return !disabled
+      ? sy.item_main
+      : classNames(sy.item_main, sy.item_main__disabled);
+  };
 
   return (
     <div className={sy.list}>

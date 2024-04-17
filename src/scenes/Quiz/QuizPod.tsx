@@ -4,6 +4,7 @@ import logger from '@services/logger';
 import Quiz from './Quiz';
 
 // Helper for page rotation
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const rotatePage = (items: any[], currIndex: number, dir: 'next' | 'prev') => {
   const numItems = items.length;
   const step = dir === 'next' ? 1 : -1;
