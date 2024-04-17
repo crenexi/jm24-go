@@ -1,11 +1,7 @@
-import { ReactNode, FC, createContext, useState } from 'react';
+import { ReactNode, FC, createContext, useState, useMemo } from 'react';
 import useContentful from '@hooks/use-contentful';
 import { Wish, NewWish } from '../../Wish.types';
-import {
-  WisherState,
-  WisherError,
-  WisherContextType,
-} from './WisherContext.types';
+import { WisherState, WisherError, WisherContextType } from './WisherContext.types'; // prettier-ignore
 
 // Default wisher state
 const defaultState: WisherState = {
@@ -81,10 +77,19 @@ export const WisherProvider: FC<ProviderProps> = ({ children }) => {
     }
   };
 
+  const contextValue = useMemo(
+    () => ({
+      error,
+      state,
+      reset,
+      handleChange,
+      handleSend,
+    }),
+    [error, state],
+  );
+
   return (
-    <WisherContext.Provider
-      value={{ error, state, reset, handleChange, handleSend }}
-    >
+    <WisherContext.Provider value={contextValue}>
       {children}
     </WisherContext.Provider>
   );

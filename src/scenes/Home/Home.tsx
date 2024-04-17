@@ -16,7 +16,7 @@ const Home = () => {
               key={url}
               className={sy.collage_item}
               style={{ backgroundImage: `url('${url}')` }}
-            ></div>
+            />
           ))}
         </div>
         <div className={sy.welcome}>

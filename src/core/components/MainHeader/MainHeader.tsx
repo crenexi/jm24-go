@@ -1,4 +1,5 @@
-import { FC, Fragment, useState } from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+import { FC, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useBreakpoint from '@hooks/use-breakpoint';
 import { assetsUrl } from '@constants/constants';
@@ -8,11 +9,7 @@ const MainHeader: FC = () => {
   const navigate = useNavigate();
   const isGtSm = useBreakpoint('d1+');
 
-  const urlAlpacas = `${assetsUrl}/alpacas.svg`;
   const urlLogo = `${assetsUrl}/logo-light.svg`;
-
-  // const [drawerOpen, setDrawerOpen] = useState(true);
-  // const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const jsxHeaderMain = (
     <header className={sy.header_main}>

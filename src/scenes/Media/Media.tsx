@@ -52,21 +52,6 @@ const Media: FC = () => {
         </Button>
       </MediaOption>
       <MediaOption
-        title="Option 2: AirDrop"
-        subtitle="At the reception Photo Booth iPad"
-        pretext={dMedia.airdrop.pretext}
-        steps={dMedia.airdrop.steps}
-      >
-        <div className={sy.callout}>
-          <span>
-            <small>DEVICE NAME</small>
-          </span>
-          <span>
-            <strong>M&amp;J Wedding Booth iPad</strong>
-          </span>
-        </div>
-      </MediaOption>
-      <MediaOption
         title="Option 3: Email"
         subtitle="Alternative to Dropbox"
         pretext={dMedia.email.pretext}

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ErrorBoundary, ErrorFallback, WedLogo } from '@components/legos';
+import { ErrorBoundary, ErrorFallback } from '@components/legos';
 import { Loading } from '@components/feedback';
 
 import AppRoutes from './AppRoutes';
