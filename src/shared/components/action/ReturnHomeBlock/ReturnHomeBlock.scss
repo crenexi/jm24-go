@@ -3,7 +3,7 @@
 $border: 1px solid rgba(255, 255, 255, .08);
 
 .edge {
-  padding: sp(sm7) 6vw sp(md5);
+  padding: sp(sm7) 6vw sp(md3);
 }
 
 .edge_inner {
@@ -25,6 +25,22 @@ $border: 1px solid rgba(255, 255, 255, .08);
     border-bottom: 1px solid rgba(255, 255, 255, .15);
     z-index: -1;
   }
+}
+
+.footer {
+  margin-top: sp(md3);
+}
+
+.footer_main {
+  @include flexy(column, center, center);
+  @include text-preset('label-sm', co(neutral, n80));
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.footer_icon {
+  font-size: 1.7rem;
+  margin-bottom: sp(sm2);
 }
 
 .main {

@@ -19,6 +19,7 @@ import {
   faCastle,
   faCat,
   faCauldron,
+  faShieldCat,
   faChampagneGlasses,
   faCheck,
   faCheckToSlot,
@@ -95,6 +96,7 @@ const buildLibrary = (): void => {
     faApple,
     // Lights
     faArrowLeft,
+    faShieldCat,
     faArrowRight,
     faArrowUpFromSquare,
     faBars,
